@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
         
-        // 툴바에 메뉴 달아주는 코드 작성해야함
+        // 툴바에 메뉴 달아주는 코드 작성해야함 !!
 
         var btnCreatePost = findViewById<Button>(R.id.btnCreatePost)
         btnCreatePost.setOnClickListener {
