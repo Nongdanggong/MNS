@@ -1,2 +1,0 @@
-# MNS
-KNU MNS project
