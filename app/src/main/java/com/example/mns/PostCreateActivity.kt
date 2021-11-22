@@ -34,6 +34,7 @@ class PostCreateActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        /// commint 테스트
         var imagebtn = findViewById<ImageButton>(R.id.userPhoto)
         var pinbtn = findViewById<ImageButton>(R.id.pin)
         var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
