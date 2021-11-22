@@ -5,6 +5,8 @@
     android:orientation="vertical">
 
 
+<!--    author : 김경한-->
+<!--    message: 안녕하세요, 깃 테스트중입니다.-->
     <include layout="@layout/toolbar" />
 
     <RelativeLayout
