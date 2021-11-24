@@ -63,15 +63,16 @@ class PostReadActivity : AppCompatActivity(){
         }
 
     }
-    /********** 툴바 우측의 메뉴 **********/
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
-        // 툴바 옵션 제거 (글 등록 옵션)
-        var item : MenuItem
-        item = menu!!.findItem(R.id.menu_edit)
-        item.setVisible(false)
-        return super.onCreateOptionsMenu(menu)
-    }
+
+//    /********** 툴바 우측의 메뉴 **********/
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.menu_toolbar, menu)
+//        // 툴바 옵션 제거 (글 등록 옵션) ---> 그냥 onCreateOptionsMenu 안하면 됨......
+//        var item : MenuItem
+//        item = menu!!.findItem(R.id.menu_edit)
+//        item.setVisible(false)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
     /********** 툴바의 메뉴들 기능 **********/
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
