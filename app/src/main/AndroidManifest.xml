@@ -28,6 +28,7 @@
         <activity android:name=".PostCreateActivity"/>
         <activity android:name=".PostReadActivity"/>
         <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".SetprofileActivity"></activity>
     </application>
 
 </manifest>

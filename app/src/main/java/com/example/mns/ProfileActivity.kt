@@ -1,7 +1,10 @@
 package com.example.mns
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class ProfileActivity : AppCompatActivity() {
@@ -16,6 +19,25 @@ class ProfileActivity : AppCompatActivity() {
         // 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        var account = findViewById<ImageButton>(R.id.account)
+        var name = findViewById<TextView>(R.id.name_text)
+        var pin = findViewById<ImageButton>(R.id.pin)
+        var scrap = findViewById<ImageButton>(R.id.scrap)
+
+        account.setOnClickListener {
+            var intent = Intent(applicationContext,SetprofileActivity::class.java)
+            startActivity(intent)
+        }
+
+        pin.setOnClickListener {
+
+
+        }
+
+        scrap.setOnClickListener {
+
+
+        }
 
     }
 
