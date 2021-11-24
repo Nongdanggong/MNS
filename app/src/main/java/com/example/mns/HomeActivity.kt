@@ -15,18 +15,23 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        var btn_Createpost = findViewById<ImageButton>(R.id.btn_createpin)
-        btn_Createpost.setOnClickListener {
+        var btnCreatepost = findViewById<ImageButton>(R.id.btn_createpin)
+        btnCreatepost.setOnClickListener {
             var intent = Intent(applicationContext,PostCreateActivity::class.java)
             startActivity(intent)
         }
+
         var btnReadPost = findViewById<ImageButton>(R.id.map)
         btnReadPost.setOnClickListener {
             var intent = Intent(applicationContext,PostReadActivity::class.java)
             startActivity(intent)
         }
 
-
+        var btnprofile = findViewById<ImageButton>(R.id.btn_profile)
+        btnprofile.setOnClickListener {
+            var intent = Intent(applicationContext,ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }
