@@ -15,19 +15,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="MNS"
-            android:padding="10dp"
+            android:paddingTop="15dp"
+            android:padding="15dp"
             android:textSize="30sp" />
 
         <ImageButton
             android:id="@+id/btn_profile"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
             android:paddingTop="15dp"
             android:paddingRight="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/account"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"></ImageButton>
+            android:scaleType="centerCrop"
+            android:src="@drawable/account"></ImageButton>
 
         <ImageButton
             android:id="@+id/btn_createpin"
@@ -44,7 +45,7 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_marginTop="77dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="0dp"
             android:src="@drawable/img_2"></ImageButton>
 
