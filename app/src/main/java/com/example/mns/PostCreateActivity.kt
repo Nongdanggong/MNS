@@ -34,14 +34,13 @@ class PostCreateActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        /// commint 테스트
         var imagebtn = findViewById<ImageButton>(R.id.userPhoto)
         var pinbtn = findViewById<ImageButton>(R.id.pin)
         var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
         var pincolor = arrayOf(R.drawable.pinred, R.drawable.pinblue,
                         R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
 
-        // 핀 버튼 클릭했을 때 핀 색상 선택 가능
+        // 핀 버튼 클릭했을 때 핀 색상 선택 가능, 핀 카테고리 정보 전달 코드 필요
         pinbtn.setOnClickListener {
             var dlg = AlertDialog.Builder(this)
             dlg.setTitle("핀 카테고리 선택")

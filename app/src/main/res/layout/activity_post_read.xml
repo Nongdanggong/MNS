@@ -54,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
                 <!-- 본문 제목 -->
                 <TextView
                     android:text="날씨가 좋다~"
@@ -80,11 +81,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp" />
-                <!-- 좋아요 버튼 : 차후 디자인 수정 -->
-                <Button
-                    android:text="좋아요"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
+                <!-- 좋아요, 스크랩 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imgbtn_heart"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/heart_b"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/imgbtn_scrap"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bookmark_b"></ImageButton>
+                </LinearLayout>
             </LinearLayout>
 
             <!-- 댓글 부분 -->
