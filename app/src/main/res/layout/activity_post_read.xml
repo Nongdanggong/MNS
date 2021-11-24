@@ -95,7 +95,7 @@
                     android:layout_marginBottom="15dp" />
 
                 <!-- 좋아요, 스크랩 -->
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -106,7 +106,25 @@
                         android:src="@drawable/heart_b"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         />
+                    <TextView
+                        android:id="@+id/text_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19"
+                        app:layout_constraintBottom_toTopOf="@id/imgbtn_heart"
+                        app:layout_constraintLeft_toLeftOf="@id/imgbtn_heart"
+                        app:layout_constraintRight_toRightOf="@id/imgbtn_heart"></TextView>
+                    <TextView
+                        android:id="@+id/text_scrap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        app:layout_constraintBottom_toTopOf="@id/imgbtn_scrap"
+                        app:layout_constraintLeft_toLeftOf="@id/imgbtn_scrap"
+                        app:layout_constraintRight_toRightOf="@id/imgbtn_scrap"></TextView>
 
                     <ImageButton
                         android:id="@+id/imgbtn_scrap"
@@ -115,9 +133,11 @@
                         android:padding="5dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bookmark_b"></ImageButton>
-                </LinearLayout>
-            </LinearLayout>
+                        android:src="@drawable/bookmark_b"
+                        app:layout_constraintLeft_toRightOf="@id/imgbtn_heart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        ></ImageButton>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 댓글 부분 -->
             <LinearLayout
@@ -227,6 +247,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
