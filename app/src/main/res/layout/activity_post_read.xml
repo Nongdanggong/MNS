@@ -25,27 +25,37 @@
             <!-- 프로필 + 닉네임 부분 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
                 <!-- 프로필 이미지 -->
                 <ImageView
                     android:id="@+id/post_read_userImg"
-                    android:src="@drawable/account"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:src="@drawable/account"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <!-- 프로필 닉네임 -->
                 <TextView
-                    android:text="익명"
-                    android:textSize="20dp"
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
-                    app:layout_constraintLeft_toRightOf="@+id/post_read_userImg"/>
+                    android:text="익명"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@+id/post_read_userImg" />
+
+                <ImageView
+                    android:id="@+id/pin"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/pinred"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 본문 부분 -->
@@ -75,7 +85,7 @@
 
                 <!-- 본문 내용 -->
                 <TextView
-                    android:text="오늘은 날씨가 너무 좋아서 수성못에서 산책을 했다.\n 이따가 집에가서 넷플릭스 보고 자야지~"
+                    android:text="오늘은 날씨가 너무 좋아서 수성못에서 산책을 했다.\n이따가 집에가서 넷플릭스 보고 자야지~"
                     android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

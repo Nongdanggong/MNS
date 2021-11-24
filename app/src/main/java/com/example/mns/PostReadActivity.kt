@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -26,6 +27,9 @@ class PostReadActivity : AppCompatActivity(){
         var imgbtn_heart = findViewById<ImageButton>(R.id.imgbtn_heart)
         var imgbtn_scrap = findViewById<ImageButton>(R.id.imgbtn_scrap)
         var imgbtn_send = findViewById<ImageButton>(R.id.bottom_comment_sendBtn)
+
+        // 핀 카테고리에 따라 resource 변경 코드 필요
+        var pin = findViewById<ImageView>(R.id.pin)
 
         // 버튼 클릭시 버튼 이미지 변환 조절
         var i = true
