@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -21,6 +22,41 @@ class PostReadActivity : AppCompatActivity(){
         supportActionBar?.setDisplayShowTitleEnabled(false)
         // 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        var imgbtn_heart = findViewById<ImageButton>(R.id.imgbtn_heart)
+        var imgbtn_scrap = findViewById<ImageButton>(R.id.imgbtn_scrap)
+        var imgbtn_send = findViewById<ImageButton>(R.id.bottom_comment_sendBtn)
+
+        // 버튼 클릭시 버튼 이미지 변환 조절
+        var i = true
+
+        // 좋아요 정보 저장하는 코드 필요
+        imgbtn_heart.setOnClickListener {
+            i = if(i){
+                imgbtn_heart.setImageResource(R.drawable.heart_r)
+                false
+            } else {
+                imgbtn_heart.setImageResource(R.drawable.heart_b)
+                true
+            }
+        }
+
+        // 스크랩 정보 저장하는 코드 필요
+        imgbtn_scrap.setOnClickListener {
+            i = if(i){
+                imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
+                false
+            } else {
+                imgbtn_scrap.setImageResource(R.drawable.bookmark_b)
+                true
+            }
+        }
+
+        // 버튼 클릭시 데이터베이스에 댓글 내용 저장 뒤 화면 새로고침
+        imgbtn_send.setOnClickListener {
+
+
+        }
 
     }
     /********** 툴바 우측의 메뉴 **********/
