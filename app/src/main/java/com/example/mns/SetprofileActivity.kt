@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
@@ -47,12 +48,21 @@ class SetprofileActivity : AppCompatActivity() {
 
     }
 
-    /********** 툴바의 메뉴들 기능 **********/
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // 툴바 메뉴 기능
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when (id) {
-            // 뒤로가기 버튼을 클릭(선택)한 경우
             android.R.id.home -> {
+                finish()
+                return true
+            }
+            // 우측 상단 아이콘 클릭시 (데이터베이스로 파일 전송하는 코드 필요)
+            R.id.menu_edit -> {
                 finish()
                 return true
             }
