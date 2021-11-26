@@ -13,7 +13,7 @@ android {
             resolutionStrategy {force 'androidx.core:core-ktx:1.6.0'}
         }
         applicationId "com.example.kakaomaptest_1"
-        minSdk 26
+        minSdk 25
         targetSdk 30
         versionCode 1
         versionName "1.0"

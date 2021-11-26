@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#CBFFFA">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imgView_splash"
@@ -17,6 +17,7 @@
         app:layout_constraintVertical_bias="0.45" />
 
     <TextView
+        android:id="@+id/txtView_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MNS"
@@ -25,5 +26,26 @@
         app:layout_constraintTop_toBottomOf="@id/imgView_splash"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView2_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="from"
+        android:textColor="#808080"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_splash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtView3_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moap2"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txtView2_splash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

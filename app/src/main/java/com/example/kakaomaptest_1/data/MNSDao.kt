@@ -5,6 +5,7 @@ import androidx.room.*
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import java.util.*
 
 @Dao
 interface MNSDao {
@@ -35,6 +36,8 @@ interface MNSDao {
     @Query("SELECT * FROM post_table")
     fun readAllPostData(): LiveData<List<Post>>
 
+    @Query("DELETE FROM chat_table WHERE postId LIKE :postid AND date LIKE :date AND userId LIKE :userid")
+    fun deleteSingleChat(postid: Int, date: Date, userid: String)
 //    @Query("SELECT * FROM post_table")
 //    fun readAllPostDataDead(): List<Post>
 }

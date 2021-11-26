@@ -21,15 +21,11 @@ class PostReadFragment: Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var mMNSViewModel: MNSViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         rootView = inflater.inflate(R.layout.fragment_post_read, container, false)
         recyclerView = rootView.findViewById<RecyclerView>(R.id.listView_post_read)
         val adapter = ListAdapter()
@@ -39,13 +35,14 @@ class PostReadFragment: Fragment() {
         val postId = requireArguments().getInt("key")
         mMNSViewModel.readAllChatData.observe(viewLifecycleOwner, { logs ->
             adapter.setData(getChatLog(logs, postId), makeBundle())
+            adapter.notifyDataSetChanged()
         })
         return rootView
     }
 
     private fun makeBundle(): Bundle {
-        var currentUserId = (activity as MainActivity).getUserId()
-        var bundle = bundleOf(
+        val currentUserId = (activity as MainActivity).getUserId()
+        val bundle = bundleOf(
             "key" to requireArguments().getInt("key"),
             "userid" to requireArguments().getString("userid"),
             "title" to requireArguments().getString("title"),
