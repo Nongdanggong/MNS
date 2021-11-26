@@ -5,6 +5,7 @@ import com.example.kakaomaptest_1.data.MNSDao
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import java.util.*
 
 class MNSRepository(private val MNSDao: MNSDao) {
 
@@ -13,28 +14,32 @@ class MNSRepository(private val MNSDao: MNSDao) {
     val readAllChatData: LiveData<List<Chat>> = MNSDao.readAllChatData()
 //    val readAllPostDataDead: List<Post> = MNSDao.readAllPostDataDead()
 
-    suspend fun addUser(user: User) {
+    fun addUser(user: User) {
         MNSDao.addUser(user)
     }
 
-    suspend fun addPost(post: Post) {
+    fun addPost(post: Post) {
         MNSDao.addPost(post)
     }
 
-    suspend fun addChat(chat: Chat) {
+    fun addChat(chat: Chat) {
         MNSDao.addChat(chat)
     }
 
-    suspend fun updateUser(user: User) {
+    fun updateUser(user: User) {
         MNSDao.updateUser(user)
     }
 
-    suspend fun updatePost(post: Post) {
+    fun updatePost(post: Post) {
         MNSDao.updatePost(post)
     }
 
-    suspend fun updateChat(chat: Chat) {
+    fun updateChat(chat: Chat) {
         MNSDao.updateChat(chat)
+    }
+
+    fun deleteSingleChat(postid: Int, date: Date, userid: String) {
+        MNSDao.deleteSingleChat(postid, date, userid)
     }
 
 }

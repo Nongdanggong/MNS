@@ -1,10 +1,12 @@
 package com.example.kakaomaptest_1.Fragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
@@ -57,7 +59,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is HeaderViewHolder -> {
-                var uri = bundle.getString("uri")
+                val uri = bundle.getString("uri")
                 holder.itemView.post_read_user.text = bundle.getString("userid")
                 holder.itemView.post_read_title.text = bundle.getString("title")
                 if(uri != "") {
@@ -85,12 +87,23 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             is TaskViewHolder -> {
-                var currentItem = chatLog[position - 1]
-                var form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val currentItem = chatLog[position - 1]
+                val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
 
                 holder.itemView.comment_user.text = currentItem.userId
                 holder.itemView.comment_text.text = currentItem.log
                 holder.itemView.comment_date.text = form.format(currentItem.date)
+                val deleteBtn = holder.itemView.btn_delete
+
+                if(currentItem.userId == bundle.getString("currUser")) {
+                    deleteBtn.visibility = VISIBLE
+                } else {
+                    deleteBtn.visibility = GONE
+                }
+                deleteBtn.setOnClickListener{
+                    val aD = deleteChatAlertDialog(currentItem)
+                    aD.show()
+                }
             }
         }
     }
@@ -102,6 +115,23 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun setData(chatLog: ArrayList<Chat>, bundle: Bundle) {
         this.chatLog = chatLog
         this.bundle = bundle
-        notifyDataSetChanged()
+    }
+
+    fun deleteChatAlertDialog(currentItem: Chat): AlertDialog {
+        val postid = currentItem.postId
+        val userid = currentItem.userId
+        val date = currentItem.date
+
+        val builder = AlertDialog.Builder(context)
+            .setTitle("채팅 삭제")
+            .setMessage("삭제하시겠습니까?")
+            .setPositiveButton("아니오"){ dialog, which ->
+            }
+            .setNegativeButton("네"){ dialog, which ->
+                mMNSViewModel.deleteSingleChat(postid, date, userid)
+            }
+            .create()
+
+        return builder
     }
 }
