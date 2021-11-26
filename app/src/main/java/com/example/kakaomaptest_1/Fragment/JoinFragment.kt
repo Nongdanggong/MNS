@@ -37,8 +37,8 @@ class JoinFragment : Fragment(), View.OnClickListener {
         })
 
         edtId = rootView.findViewById(R.id.join_layout_edtText1)
-        edtPasswd = rootView.findViewById(R.id.join_layout_edtText2)
-        edtPasswd2 = rootView.findViewById(R.id.join_layout_edtText3)
+        edtPasswd = rootView.findViewById(R.id.join_layout_edtText3)
+        edtPasswd2 = rootView.findViewById(R.id.join_layout_edtText4)
         btnJoin = rootView.findViewById(R.id.join_layout_btnJoin)
 
         edtId.editText!!.addTextChangedListener(object: TextWatcher {
