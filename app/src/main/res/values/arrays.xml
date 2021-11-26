@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pinColors">
+        <item name="pinRed">#FB7D81</item>
+        <item name="pinBlue">#00ACF3</item>
+        <item name="pinGreen">#00877A</item>
+        <item name="pin">#000000</item>
+        <item name="pinYellow">#F5FF6F</item>
+    </array>
+
+</resources>
