@@ -6,9 +6,6 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-<<<<<<< HEAD
-rootProject.name = "MNS"
-=======
+
 rootProject.name = "KakaoMapTest_1"
->>>>>>> 25e1b6dd3c692cd44d70aad6f261c71419e14609
 include ':app'
