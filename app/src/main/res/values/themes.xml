@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Theme.MNS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+=======
+    <style name="Theme.KakaoMapTest_1" parent="Theme.AppCompat.Light.NoActionBar">
+>>>>>>> 25e1b6dd3c692cd44d70aad6f261c71419e14609
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +17,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25e1b6dd3c692cd44d70aad6f261c71419e14609
 </resources>
