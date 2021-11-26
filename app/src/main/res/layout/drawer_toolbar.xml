@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:title="지도"
+    android:background="#CBFFFA"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:src="@drawable/main_logo" />
+
+    <ImageButton
+        android:id="@+id/imgBtn_createPost"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:backgroundTint="#CBFFFA"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/ic_edit" />
+
+</androidx.appcompat.widget.Toolbar>
