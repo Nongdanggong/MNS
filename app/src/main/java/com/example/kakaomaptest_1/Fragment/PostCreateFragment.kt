@@ -122,7 +122,7 @@ class PostCreateFragment : Fragment() {
         val text = eText_post.text.toString().trim()
         val date = Calendar.getInstance().time
 
-        val post = Post(0, id, title, mT, lati, long, currentImgUri, text, date)
+        val post = Post(0,id,0,lati,long,"","",title,currentImgUri,text,date)
 
         return post
     }
