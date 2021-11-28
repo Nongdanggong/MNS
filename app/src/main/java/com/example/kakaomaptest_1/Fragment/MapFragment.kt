@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,6 +72,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                     startTracking()
                     imgBtnMyLoc.tag = 1
                     imgBtnMyLoc.setColorFilter(Color.argb(200, 255, 0, 0))
+                    listNearMarker()
                 } else {
                     if(imgBtnMyLoc.tag == 1) {
                         imgBtnMyLoc.tag = 0
@@ -100,42 +102,43 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
 
 
-//    // 두 마커간의 거리 구하는 함수
-//    private fun getDistance(lati1: Double, long1: Double, lati2:Double, long2:Double): Int{
-//        val R = 6372.8 * 1000
-//        val dLat = Math.toRadians(lati2 - lati1)
-//        val dLon = Math.toRadians(long2 - long1)
-//        val a = sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(Math.toRadians(lati1)) * cos(Math.toRadians(lati2))
-//        val c = 2 * asin(sqrt(a))
-//        return (R * c).toInt()
-//    }
-//    private fun listNearMarker(){
-//        // 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현
-//        var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
-//        var title: String
-//        var lati: Double
-//        var long: Double
-//        var markerType: Int
-//        var postId: Int
-//
-//        if(currentLoc.)
-//        //Toast.makeText(context, postList.size.toString(), Toast.LENGTH_SHORT).show()
-//        for(i in postList) {
-//
-//
-//            title = i.title
-//            lati = i.lati
-//            long = i.longi
-//            markerType = i.markerType
-//            postId = i.key
-//            val tempPoint = MapPoint.mapPointWithGeoCoord(lati, long)
-//            val tempItem = MapPOIItem()
-//
-//            var distance = getDistance(lati,long,i.lati,i.longi)
-//            if(distance < 500){
-//
-//            }
-//
+    // 두 마커간의 거리 구하는 함수
+    private fun getDistance(lati1: Double, long1: Double, lati2:Double, long2:Double): Int{
+        val R = 6372.8 * 1000
+        val dLat = Math.toRadians(lati2 - lati1)
+        val dLon = Math.toRadians(long2 - long1)
+        val a = sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(Math.toRadians(lati1)) * cos(Math.toRadians(lati2))
+        val c = 2 * asin(sqrt(a))
+        return c.toInt()
+    }
+    private fun listNearMarker(){
+        // 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현
+        var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+        var title: String
+        var lati: Double
+        var long: Double
+        var markerType: Int
+        var postId: Int
+        
+        // currentLoc 없을 때 조건문 생성해야함
+        lati = currentLoc.getDouble("lati")
+        long = currentLoc.getDouble("long")
+
+        //Toast.makeText(context, postList.size.toString(), Toast.LENGTH_SHORT).show()
+        for(i in postList) {
+
+            val tempPoint = MapPoint.mapPointWithGeoCoord(lati, long)
+            val tempItem = MapPOIItem()
+
+            var distance = getDistance(lati,long,i.lati,i.longi)
+            if(distance < 500){
+                title = i.title
+                markerType = i.markerType
+                postId = i.key
+                Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(context,distance.toString(),Toast.LENGTH_SHORT).show()
+            }
 //            tempItem.tag = postId
 //            tempItem.markerType = MapPOIItem.MarkerType.CustomImage
 //            tempItem.customImageResourceId = colorArray[markerType]
@@ -143,8 +146,8 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
 //            tempItem.mapPoint = tempPoint
 //            tempItem.itemName = title
 //            mapView.addPOIItem(tempItem)
-//        }
-//    }
+        }
+    }
     // 마커 생성 함수
     private fun setMarker() {
         var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
