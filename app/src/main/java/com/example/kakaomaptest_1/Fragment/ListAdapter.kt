@@ -79,7 +79,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         val postId = bundle.getInt("key")
                         val userId = bundle.getString("currUser")
                         val date = Date()
-                        val temp = Chat(postId, date, userId!!, editText.text.toString().trim())
+                        val temp = Chat(postId, date, "","",userId!!, editText.text.toString().trim())
                         mMNSViewModel.addChat(temp)
                         editText.text.clear()
                     }

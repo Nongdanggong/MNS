@@ -146,7 +146,7 @@ class JoinFragment : Fragment(), View.OnClickListener {
     private fun addUser() {
         val userId = edtId.editText!!.text.toString().trim()
         val userPasswd = edtPasswd.editText!!.text.toString().trim()
-        val user = User(userId, userPasswd)
+        val user = User(userId, userPasswd,"","")
         mMNSViewModel.addUser(user)
     }
 
