@@ -121,9 +121,9 @@ class PostCreateFragment : Fragment() {
         val long = requireArguments().getDouble("long")
         val text = eText_post.text.toString().trim()
         val date = Calendar.getInstance().time
-        val random = Math.random()*5
+        //val random = Math.random()*2
 
-        val post = Post(0,id,0,lati+random,long+random,"","",title,currentImgUri,text,date)
+        val post = Post(0,id,0,lati,long,"","",title,currentImgUri,text,date)
 
         return post
     }
