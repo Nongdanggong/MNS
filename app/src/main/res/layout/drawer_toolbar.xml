@@ -4,7 +4,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:title="지도"
     android:background="#CBFFFA"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -17,10 +16,10 @@
     <ImageButton
         android:id="@+id/imgBtn_createPost"
         android:layout_width="50dp"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="right"
         android:backgroundTint="#CBFFFA"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/ic_edit" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/location_w" />
 
 </androidx.appcompat.widget.Toolbar>

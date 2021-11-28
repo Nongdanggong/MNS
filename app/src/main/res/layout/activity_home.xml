@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="MNS"
+            android:paddingTop="15dp"
+            android:padding="15dp"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/btn_profile"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:paddingTop="15dp"
+            android:paddingRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/account"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/btn_createpin"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:paddingTop="15dp"
+            android:paddingRight="5dp"
+            android:layout_toLeftOf="@id/btn_profile"
+            android:src="@drawable/location_w"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/img_2"></ImageButton>
+
+        <SlidingDrawer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map"
+            android:background="@color/white"
+            android:content="@+id/content"
+            android:handle="@+id/handle">
+
+            <Button
+                android:id="@+id/handle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/map"
+                android:backgroundTint="@color/white"
+                android:text="근처 인기 장소"
+                android:textColor="@color/black"></Button>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/img_3"></ImageView>
+            </LinearLayout>
+        </SlidingDrawer>
+    </RelativeLayout>
+</LinearLayout>
