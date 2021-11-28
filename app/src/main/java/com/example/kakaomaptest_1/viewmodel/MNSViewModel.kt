@@ -22,6 +22,8 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: MNSRepository
 
+
+//     Fragment에서 이 viewmodel 호출 할 때 마다 user정보, post정보, 댓글 정보를 데이터 베이스에서 불러온다.
     init {
         val userDao = MNSDatabase.getDatabase(application).userDao()
         repository = MNSRepository(userDao)
@@ -30,6 +32,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         readAllChatData = repository.readAllChatData
 //        readAllPostDataDead = repository.readAllPostDataDead
     }
+
 
     fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
