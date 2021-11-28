@@ -22,6 +22,7 @@ import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.text.SimpleDateFormat
+import kotlin.math.*
 
 class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEventListener {
 
@@ -63,6 +64,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             setMarker()
         })
 
+        // 현재 위치 잡아주는 버튼
         imgBtnMyLoc.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
                 if(checkLocationService() && imgBtnMyLoc.tag == 0) {
@@ -81,7 +83,8 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                 }
             }
         })
-
+        
+        // post 생성 버튼
         imgBtnCreatePost.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 if(imgBtnMyLoc.tag != 1){
@@ -96,6 +99,53 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         return rootView
     }
 
+
+//    // 두 마커간의 거리 구하는 함수
+//    private fun getDistance(lati1: Double, long1: Double, lati2:Double, long2:Double): Int{
+//        val R = 6372.8 * 1000
+//        val dLat = Math.toRadians(lati2 - lati1)
+//        val dLon = Math.toRadians(long2 - long1)
+//        val a = sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(Math.toRadians(lati1)) * cos(Math.toRadians(lati2))
+//        val c = 2 * asin(sqrt(a))
+//        return (R * c).toInt()
+//    }
+//    private fun listNearMarker(){
+//        // 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현
+//        var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+//        var title: String
+//        var lati: Double
+//        var long: Double
+//        var markerType: Int
+//        var postId: Int
+//
+//        if(currentLoc.)
+//        //Toast.makeText(context, postList.size.toString(), Toast.LENGTH_SHORT).show()
+//        for(i in postList) {
+//
+//
+//            title = i.title
+//            lati = i.lati
+//            long = i.longi
+//            markerType = i.markerType
+//            postId = i.key
+//            val tempPoint = MapPoint.mapPointWithGeoCoord(lati, long)
+//            val tempItem = MapPOIItem()
+//
+//            var distance = getDistance(lati,long,i.lati,i.longi)
+//            if(distance < 500){
+//
+//            }
+//
+//            tempItem.tag = postId
+//            tempItem.markerType = MapPOIItem.MarkerType.CustomImage
+//            tempItem.customImageResourceId = colorArray[markerType]
+//            tempItem.customImageAnchorPointOffset = MapPOIItem.ImageOffset(32, 0)
+//            tempItem.mapPoint = tempPoint
+//            tempItem.itemName = title
+//            mapView.addPOIItem(tempItem)
+//        }
+//    }
+    // 마커 생성 함수
     private fun setMarker() {
         var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
         var title: String
@@ -123,6 +173,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         }
     }
 
+    // 현재 위치 정보 받아와서 currentLoc에 삽입하는 부분
     private fun setMPBundle() {
         val a: MapPoint
         a = this.mapView.mapCenterPoint
@@ -136,10 +187,12 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
+    // 현재 위치 잡아주는 함수 ( Tracking 시작 )
     private fun startTracking() {
         mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
     }
 
+    // Tracking 멈추는 함수
     private fun stopTracking() {
         mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
     }
