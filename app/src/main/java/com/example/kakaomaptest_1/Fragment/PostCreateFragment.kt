@@ -109,7 +109,6 @@ class PostCreateFragment : Fragment() {
                 imgBtn_photoAdd.visibility = GONE
                 imgBtn_photoDelete.visibility = VISIBLE
             }
-
             Glide.with(this).load(uri).into(userPhoto)
         }
     }
@@ -123,7 +122,7 @@ class PostCreateFragment : Fragment() {
         val date = Calendar.getInstance().time
         //val random = Math.random()*2
 
-        val post = Post(0,id,0,lati,long,"","",title,currentImgUri,text,date)
+        val post = Post(0, id, title, mT, lati, long, currentImgUri, text, date)
 
         return post
     }
