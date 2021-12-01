@@ -58,7 +58,11 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         imgBtnMyLoc = rootView.findViewById<ImageButton>(R.id.iV_location)
         imgBtnMyLoc.tag = 0
         currentLoc = Bundle()
+
+        // 아이콘 이미지 변경
         imgBtnCreatePost = requireActivity().findViewById<ImageButton>(R.id.imgBtn_createPost)
+        imgBtnCreatePost.setImageResource(R.drawable.location_w)
+
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
         mMNSViewModel.readAllPostData.observe(viewLifecycleOwner, Observer { post ->
             this.postList = post
@@ -92,6 +96,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                 if(imgBtnMyLoc.tag != 1){
                     Toast.makeText(context, "하단 버튼을 클릭해 현 위치를 불러오세요", Toast.LENGTH_SHORT).show()
                 } else {
+                    imgBtnCreatePost.setImageResource(R.drawable.edit)
                     setMPBundle()
                     findNavController().navigate(R.id.action_mapFragment_to_postCreateFragment, currentLoc)
                 }
