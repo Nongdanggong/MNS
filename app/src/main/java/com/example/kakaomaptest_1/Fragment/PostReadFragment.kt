@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class PostReadFragment: Fragment() {
     lateinit var rootView: View
     lateinit var recyclerView: RecyclerView
     lateinit var mMNSViewModel: MNSViewModel
+    private lateinit var imgBtnCreatePost : ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +39,11 @@ class PostReadFragment: Fragment() {
             adapter.setData(getChatLog(logs, postId), makeBundle())
             adapter.notifyDataSetChanged()
         })
+
+        // 아이콘 이미지 숨김
+        imgBtnCreatePost = requireActivity().findViewById<ImageButton>(R.id.imgBtn_createPost)
+        imgBtnCreatePost.setImageResource(0)
+
         return rootView
     }
 
