@@ -27,7 +27,8 @@
             android:layout_gravity="center_horizontal"
             android:text="MNS"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:fontFamily="@font/meriendaone_regular"/>
     </LinearLayout>
 
 

@@ -10,6 +10,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import kotlinx.android.synthetic.main.chat_row.view.*
+import kotlinx.android.synthetic.main.fragment_post_create.view.*
 import kotlinx.android.synthetic.main.fragment_post_read_footer.view.*
 import kotlinx.android.synthetic.main.fragmet_post_read_header.view.*
 import java.text.SimpleDateFormat
@@ -34,6 +37,11 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var bundle = Bundle()
     private var chatLog = emptyList<Chat>()
     private lateinit var mMNSViewModel: MNSViewModel
+    private lateinit var imgbtn_heart : ImageButton
+    private lateinit var imgbtn_scrap : ImageButton
+    private lateinit var img_pin : ImageView
+    private lateinit var text_like : TextView
+    private lateinit var text_scrap : TextView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
@@ -62,12 +70,58 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val uri = bundle.getString("uri")
                 holder.itemView.post_read_user.text = bundle.getString("userid")
                 holder.itemView.post_read_title.text = bundle.getString("title")
+                imgbtn_heart = holder.itemView.imgbtn_heart
+                imgbtn_scrap = holder.itemView.imgbtn_scrap
+                text_like = holder.itemView.text_like
+                text_scrap = holder.itemView.text_scrap
+
                 if(uri != "") {
                     Glide.with(context).load(uri).into(holder.itemView.post_read_photo)
                 } else {
                     holder.itemView.post_read_photo.visibility = GONE
                 }
                 holder.itemView.post_read_text.text = bundle.getString("text")
+
+                // 버튼 클릭시 버튼 이미지 변환 조절
+                var i = true
+                var num_like = text_like.text.toString()
+                var num_scrap = text_scrap.text.toString()
+                var result : Int
+
+                // 좋아요 정보 저장하는 코드 필요
+                imgbtn_heart.setOnClickListener {
+                    i = if(i){
+                        imgbtn_heart.setImageResource(R.drawable.heart_r)
+//                        result = Integer.parseInt(num_like) + 1
+//                        num_like = result.toString()
+//                        text_like.text = num_like
+                        false
+                    } else {
+                        imgbtn_heart.setImageResource(R.drawable.heart_b)
+//                        result = Integer.parseInt(num_like) - 1
+//                        num_like = result.toString()
+//                        text_like.text = num_like
+                        true
+                    }
+                }
+
+                // 스크랩 정보 저장하는 코드 필요
+                imgbtn_scrap.setOnClickListener {
+                    i = if(i){
+                        imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
+//                        result = Integer.parseInt(num_scrap) + 1
+//                        num_scrap = result.toString()
+//                        text_scrap.text = num_scrap
+                        false
+                    } else {
+                        imgbtn_scrap.setImageResource(R.drawable.bookmark_b)
+//                        result = Integer.parseInt(num_scrap) - 1
+//                        num_scrap = result.toString()
+//                        text_scrap.text = num_scrap
+                        true
+                    }
+                }
+
             }
 
             is FooterViewHolder -> {
