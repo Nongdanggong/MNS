@@ -5,6 +5,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
     <!-- 프로필 + 닉네임 부분 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +35,7 @@
             app:layout_constraintLeft_toRightOf="@+id/post_read_userImg" />
 
         <ImageView
-            android:id="@+id/pin"
+            android:id="@+id/img_pin"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="50dp"
@@ -66,19 +69,6 @@
         android:layout_gravity="center" />
     <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
 
-    <!-- 본문 내용 -->
-    <TextView
-        android:id="@+id/post_read_text"
-        android:text=""
-        android:textSize="15sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@null"/>
     <!-- 좋아요, 스크랩 버튼 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -103,6 +93,7 @@
             app:layout_constraintBottom_toTopOf="@id/imgbtn_heart"
             app:layout_constraintLeft_toLeftOf="@id/imgbtn_heart"
             app:layout_constraintRight_toRightOf="@id/imgbtn_heart"></TextView>
+
         <TextView
             android:id="@+id/text_scrap"
             android:layout_width="wrap_content"
@@ -124,4 +115,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             ></ImageButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 본문 내용 -->
+    <TextView
+        android:id="@+id/post_read_text"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"/>
+
 </LinearLayout>

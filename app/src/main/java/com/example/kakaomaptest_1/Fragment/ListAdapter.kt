@@ -74,6 +74,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 imgbtn_scrap = holder.itemView.imgbtn_scrap
                 text_like = holder.itemView.text_like
                 text_scrap = holder.itemView.text_scrap
+                img_pin = holder.itemView.img_pin
 
                 if(uri != "") {
                     Glide.with(context).load(uri).into(holder.itemView.post_read_photo)
@@ -84,40 +85,30 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 // 버튼 클릭시 버튼 이미지 변환 조절
                 var i = true
-                var num_like = text_like.text.toString()
-                var num_scrap = text_scrap.text.toString()
-                var result : Int
 
                 // 좋아요 정보 저장하는 코드 필요
                 imgbtn_heart.setOnClickListener {
                     i = if(i){
                         imgbtn_heart.setImageResource(R.drawable.heart_r)
-//                        result = Integer.parseInt(num_like) + 1
-//                        num_like = result.toString()
-//                        text_like.text = num_like
+                        text_like.text = (Integer.parseInt(text_like.text.toString()) + 1).toString()
                         false
                     } else {
                         imgbtn_heart.setImageResource(R.drawable.heart_b)
-//                        result = Integer.parseInt(num_like) - 1
-//                        num_like = result.toString()
-//                        text_like.text = num_like
+                        text_like.text = (Integer.parseInt(text_like.text.toString()) - 1).toString()
                         true
                     }
                 }
 
+                var j = true
                 // 스크랩 정보 저장하는 코드 필요
                 imgbtn_scrap.setOnClickListener {
-                    i = if(i){
+                    j = if(j){
                         imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
-//                        result = Integer.parseInt(num_scrap) + 1
-//                        num_scrap = result.toString()
-//                        text_scrap.text = num_scrap
+                        text_scrap.text = (Integer.parseInt(text_scrap.text.toString()) + 1).toString()
                         false
                     } else {
                         imgbtn_scrap.setImageResource(R.drawable.bookmark_b)
-//                        result = Integer.parseInt(num_scrap) - 1
-//                        num_scrap = result.toString()
-//                        text_scrap.text = num_scrap
+                        text_scrap.text = (Integer.parseInt(text_scrap.text.toString()) - 1).toString()
                         true
                     }
                 }
