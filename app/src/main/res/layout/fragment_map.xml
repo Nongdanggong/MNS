@@ -45,27 +45,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:content="@+id/content"
-            android:handle="@+id/handle">
+            android:handle="@id/handle">
 
             <Button
                 android:id="@+id/handle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/map"
                 android:backgroundTint="@color/white"
                 android:text="근처 인기 장소"
-                android:textColor="@color/black"></Button>
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/img_3"></ImageView>
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                android:orientation="vertical">
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:src="@drawable/img_3"></ImageView>-->
+
             </LinearLayout>
+
         </SlidingDrawer>
 
     </RelativeLayout>

@@ -24,7 +24,7 @@
         android:layout_gravity="center_horizontal"
         android:text="Sign Up"
         android:textAlignment="center"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="닉네임"
+                    android:hint="닉네임 (미설정시 아이디와 동일)"
                     android:paddingLeft="10dp"
                     android:text=""
                     android:textSize="15sp" />

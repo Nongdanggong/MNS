@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.kakaomaptest_1.Activity.MainActivity
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
@@ -47,8 +48,11 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        //LoginFragment에서 감췄던 ActionBar 다시 show
         (requireActivity() as AppCompatActivity).supportActionBar!!.show()
+        //LoginFragment에서 막아놨던 Drawer 다시 enable
+        (requireActivity() as DrawerLocker).setDrawerEnabled(true)
         rootView = inflater.inflate(R.layout.fragment_map, container, false)
         mapView = MapView(this.activity)
         mapView.setMapViewEventListener(this)

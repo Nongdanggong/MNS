@@ -39,8 +39,9 @@ class PostCreateFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         rootView = inflater.inflate(R.layout.fragment_post_create, container, false)
+        (requireActivity() as MainActivity).setDrawerEnabled(false)
         currentImgUri = ""
         imgBtn_photoAdd = rootView.findViewById<ImageButton>(R.id.addPhoto)
         imgBtn_photoDelete = rootView.findViewById<ImageButton>(R.id.deletePhoto)

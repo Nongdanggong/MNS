@@ -14,18 +14,22 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Base64
 import android.util.Log
+import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.kakaomaptest_1.Fragment.DrawerLocker
+import com.example.kakaomaptest_1.Fragment.SetProfileFragment
 import com.example.kakaomaptest_1.R
 import com.google.android.material.navigation.NavigationView
 import java.security.MessageDigest
 import kotlin.system.exitProcess
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigationItemSelectedListener {
     private val requiredPermissions = arrayOf(
         Manifest.permission.INTERNET,
         Manifest.permission.USE_FULL_SCREEN_INTENT,
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle : ActionBarDrawerToggle
     private lateinit var toolbar: Toolbar
     private lateinit var currentUserID: String
+    private lateinit var currentUserNickname: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,15 +52,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 //        supportActionBar!!.setDisplayShowTitleEnabled(false)
         nav = findViewById(R.id.navmenu)
+        nav.setNavigationItemSelectedListener(this)
         drawerLayout = findViewById(R.id.drawer)
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         permissionCheck()
-
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
 
     }
 
@@ -71,6 +74,17 @@ class MainActivity : AppCompatActivity() {
 
     fun getUserId(): String {
         return this.currentUserID
+    }
+
+    fun setUserNickname(nickname: String) {
+        this.currentUserNickname = nickname
+        val headerView = nav.getHeaderView(0)
+        val textView = headerView.findViewById<TextView>(R.id.nav_header_user)
+        textView.text = nickname
+    }
+
+    fun getUserNickname(): String {
+        return this.currentUserNickname
     }
 
     private fun getDeniedPermissions():ArrayList<String>{
@@ -165,5 +179,40 @@ class MainActivity : AppCompatActivity() {
                 permissionCheck()
             }
         }
+    }
+
+    override fun setDrawerEnabled(enabled: Boolean) {
+        val lockMode =
+            if (enabled) {
+                DrawerLayout.LOCK_MODE_UNLOCKED
+            }
+            else {
+                DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+            }
+        drawerLayout.setDrawerLockMode(lockMode)
+        toggle.isDrawerIndicatorEnabled = enabled
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        when(id) {
+            R.id.menu_profile -> {
+                val fragment = SetProfileFragment()
+                val ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.nav_host_fragment, fragment)
+                ft.commit()
+            }
+
+            R.id.menu_pin -> {
+
+            }
+
+            R.id.menu_scrap -> {
+
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

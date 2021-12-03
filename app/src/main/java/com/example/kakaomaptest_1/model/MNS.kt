@@ -1,6 +1,7 @@
 package com.example.kakaomaptest_1.model
 
 import android.os.Parcelable
+import android.provider.ContactsContract
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,7 +13,9 @@ import java.util.*
 @Entity(tableName = "user_table")
 data class User(
     @PrimaryKey val id: String,
-    val password: String
+    val password: String,
+    val nickname: String,
+    val photoUri: String
 ): Parcelable
 
 @Parcelize

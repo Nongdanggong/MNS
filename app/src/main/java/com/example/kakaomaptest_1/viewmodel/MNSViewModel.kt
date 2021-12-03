@@ -3,14 +3,15 @@ package com.example.kakaomaptest_1.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kakaomaptest_1.data.MNSDatabase
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
 import com.example.kakaomaptest_1.repository.MNSRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class MNSViewModel(application: Application): AndroidViewModel(application) {
@@ -20,7 +21,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     val readAllChatData: LiveData<List<Chat>>
 //    val readAllPostDataDead: List<Post>
 
-    private val repository: MNSRepository
+    val repository: MNSRepository
 
 
 //     Fragment에서 이 viewmodel 호출 할 때 마다 user정보, post정보, 댓글 정보를 데이터 베이스에서 불러온다.
@@ -68,5 +69,17 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteSingleChat(postid, date, userid)
         }
+    }
+
+    fun isThisIdExists(id: String) : LiveData<Boolean> {
+        var bool = MutableLiveData<Boolean>()
+        viewModelScope.launch(Dispatchers.IO) {
+            bool.postValue(repository.isThisIdExists(id))
+        }
+        return bool
+    }
+
+    fun getUser(id: String) : User {
+        return repository.getUser(id)
     }
 }

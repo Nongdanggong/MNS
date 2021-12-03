@@ -29,6 +29,7 @@ class PostReadFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         rootView = inflater.inflate(R.layout.fragment_post_read, container, false)
+        (requireActivity() as MainActivity).setDrawerEnabled(false)
         recyclerView = rootView.findViewById<RecyclerView>(R.id.listView_post_read)
         val adapter = ListAdapter()
         recyclerView.adapter = adapter

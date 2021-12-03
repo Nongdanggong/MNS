@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ class JoinFragment : Fragment(), View.OnClickListener {
     lateinit var edtId: TextInputLayout
     lateinit var edtPasswd: TextInputLayout
     lateinit var edtPasswd2: TextInputLayout
+    lateinit var edtNickname: TextInputLayout
     lateinit var btnJoin: Button
     private lateinit var mMNSViewModel: MNSViewModel
     private var userList = emptyList<User>()
@@ -29,7 +31,7 @@ class JoinFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // fragment_join.xml inflate 해줌
         rootView = inflater.inflate(R.layout.fragment_join, container, false)
         // userList에 데이터베이스에 있는 유저정보들 불러와서 저장
@@ -39,6 +41,7 @@ class JoinFragment : Fragment(), View.OnClickListener {
         })
 
         edtId = rootView.findViewById(R.id.join_layout_edtText1)
+        edtNickname = rootView.findViewById(R.id.join_layout_edtText2)
         edtPasswd = rootView.findViewById(R.id.join_layout_edtText3)
         edtPasswd2 = rootView.findViewById(R.id.join_layout_edtText4)
         btnJoin = rootView.findViewById(R.id.join_layout_btnJoin)
@@ -58,6 +61,24 @@ class JoinFragment : Fragment(), View.OnClickListener {
                     edtId.error = null
                 }
             }
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
+        edtNickname.editText!!.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val nicknameInput = s.toString()
+                if (nicknameInput.length > 7) {
+                    edtNickname.error = "닉네임은 7자이내로 작성하세요"
+                } else{
+                    edtNickname.error = null
+                }
+            }
+
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -121,6 +142,11 @@ class JoinFragment : Fragment(), View.OnClickListener {
             return false
         }
 
+        if(edtNickname.error != null) {
+            Toast.makeText(context, "닉네임 형식을 확인하세요", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
         // 사용자가 입력한 비밀번호 값이 옳바른 값인지 체크
         if (passwd.isNotEmpty() && edtPasswd.error == null) {
             if (passwd != passwd2) {
@@ -145,8 +171,14 @@ class JoinFragment : Fragment(), View.OnClickListener {
 
     private fun addUser() {
         val userId = edtId.editText!!.text.toString().trim()
+        var nickname = edtNickname.editText!!.text.toString().trim()
         val userPasswd = edtPasswd.editText!!.text.toString().trim()
-        val user = User(userId, userPasswd)
+
+        if(nickname == "") {
+            nickname = userId
+        }
+
+        val user = User(userId, userPasswd, nickname, "")
         mMNSViewModel.addUser(user)
     }
 

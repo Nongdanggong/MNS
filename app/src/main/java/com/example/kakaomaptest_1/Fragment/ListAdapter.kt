@@ -5,8 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
@@ -17,11 +16,12 @@ import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
-import kotlinx.android.synthetic.main.chat_row.view.*
+import kotlinx.android.synthetic.main.adapter_chat_row.view.*
 import kotlinx.android.synthetic.main.fragment_post_read_footer.view.*
 import kotlinx.android.synthetic.main.fragmet_post_read_header.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -41,7 +41,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when (viewType) {
             TYPE_HEADER -> HeaderViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.fragmet_post_read_header, parent, false))
             TYPE_FOOTER -> FooterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.fragment_post_read_footer, parent, false))
-            else -> TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.chat_row, parent, false))
+            else -> TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapter_chat_row, parent, false))
         }
     }
 
@@ -89,8 +89,9 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is TaskViewHolder -> {
                 val currentItem = chatLog[position - 1]
                 val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
+                val tempUser = mMNSViewModel.getUser(currentItem.userId)
 
-                holder.itemView.comment_user.text = currentItem.userId
+                holder.itemView.comment_user.text = tempUser.nickname
                 holder.itemView.comment_text.text = currentItem.log
                 holder.itemView.comment_date.text = form.format(currentItem.date)
                 val deleteBtn = holder.itemView.btn_delete

@@ -87,4 +87,12 @@
             android:id="@+id/action_postReadFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/setProfileFragment"
+        android:name="com.example.kakaomaptest_1.Fragment.SetProfileFragment"
+        android:label="SetProfileFragment" >
+        <action
+            android:id="@+id/action_setProfileFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 </navigation>

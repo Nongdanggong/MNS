@@ -33,7 +33,7 @@ abstract class MNSDatabase: RoomDatabase() {
                     context.applicationContext,
                     MNSDatabase::class.java,
                     "DB_MNS"
-                ).build()
+                ).allowMainThreadQueries().build()
                 INSTANCE = instance
                 return instance
             }

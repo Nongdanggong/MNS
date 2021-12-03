@@ -5,6 +5,7 @@ import com.example.kakaomaptest_1.data.MNSDao
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class MNSRepository(private val MNSDao: MNSDao) {
@@ -42,4 +43,11 @@ class MNSRepository(private val MNSDao: MNSDao) {
         MNSDao.deleteSingleChat(postid, date, userid)
     }
 
+    fun isThisIdExists(id: String) : Boolean {
+        return MNSDao.isThisIdExists(id)
+    }
+
+    fun getUser(id: String) : User {
+        return MNSDao.getUser(id)
+    }
 }

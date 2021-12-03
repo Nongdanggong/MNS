@@ -5,6 +5,7 @@ import androidx.room.*
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @Dao
@@ -33,10 +34,16 @@ interface MNSDao {
     @Query("SELECT * FROM user_table ORDER BY id ASC")
     fun readAllUserData(): LiveData<List<User>>
 
+    @Query("SELECT EXISTS(SELECT * FROM user_table WHERE id = :id)")
+    fun isThisIdExists(id: String): Boolean
+
+    @Query("SELECT * FROM user_table WHERE id = :id")
+    fun getUser(id: String): User
+
     @Query("SELECT * FROM post_table")
     fun readAllPostData(): LiveData<List<Post>>
 
-    @Query("DELETE FROM chat_table WHERE postId LIKE :postid AND date LIKE :date AND userId LIKE :userid")
+    @Query("DELETE FROM chat_table WHERE postId = :postid AND date = :date AND userId = :userid")
     fun deleteSingleChat(postid: Int, date: Date, userid: String)
 //    @Query("SELECT * FROM post_table")
 //    fun readAllPostDataDead(): List<Post>
