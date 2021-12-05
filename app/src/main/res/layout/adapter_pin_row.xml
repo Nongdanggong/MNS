@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/post_read_header"
+    android:id="@+id/pin_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -13,7 +13,7 @@
         android:layout_marginBottom="5dp">
         <!-- 프로필 이미지 -->
         <ImageView
-            android:id="@+id/post_read_userImg"
+            android:id="@+id/pin_post_userImg"
             android:src="@drawable/account"
             android:layout_width="30dp"
             android:layout_height="match_parent"
@@ -22,27 +22,37 @@
             app:layout_constraintTop_toTopOf="parent" />
         <!-- 프로필 닉네임 -->
         <TextView
-            android:id="@+id/post_read_user"
-            android:text="익명"
+            android:id="@+id/pin_post_title"
+            android:text="제목"
             android:textSize="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
-            app:layout_constraintLeft_toRightOf="@+id/post_read_userImg" />
+            app:layout_constraintLeft_toRightOf="@+id/pin_post_userImg"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/tV_post_read_pin"
+            android:id="@+id/pin_post_date"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/pin_post_title"
+            app:layout_constraintTop_toBottomOf="@id/pin_post_title" />
+
+        <TextView
+            android:id="@+id/tV_pin_post_pin"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:gravity="center"
             android:textSize="17sp"
             android:text="핀 종류"
-            app:layout_constraintEnd_toStartOf="@id/iV_post_read_pin"
-            app:layout_constraintTop_toTopOf="@id/iV_post_read_pin" />
+            app:layout_constraintEnd_toStartOf="@id/iV_pin_post_pin"
+            app:layout_constraintTop_toTopOf="@id/iV_pin_post_pin" />
 
         <ImageView
-            android:id="@+id/iV_post_read_pin"
+            android:id="@+id/iV_pin_post_pin"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginEnd="13dp"
@@ -57,22 +67,12 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#EDEDED" />
-    <!-- 본문 부분 -->
-    <TextView
-        android:id="@+id/post_read_title"
-        android:text="날씨가 좋다~"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical" />
     <!-- 본문 이미지 -->
     <ImageView
-        android:id="@+id/post_read_photo"
+        android:id="@+id/pin_post_photo"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center" />
     <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
 
@@ -83,7 +83,7 @@
 
     <!-- 본문 내용 -->
     <TextView
-        android:id="@+id/post_read_text"
+        android:id="@+id/pin_post_text"
         android:text=""
         android:textSize="15sp"
         android:layout_width="match_parent"
@@ -91,9 +91,10 @@
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp" />
-    <!-- 좋아요 버튼 : 차후 디자인 수정 -->
-    <Button
-        android:text="좋아요"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
 </LinearLayout>

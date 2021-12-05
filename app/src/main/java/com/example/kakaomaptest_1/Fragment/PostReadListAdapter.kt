@@ -9,12 +9,14 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Chat
+import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import kotlinx.android.synthetic.main.adapter_chat_row.view.*
 import kotlinx.android.synthetic.main.fragment_post_read_footer.view.*
@@ -23,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostReadListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
@@ -31,9 +33,13 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var editText: EditText
     private lateinit var sendBtn: ImageButton
     private lateinit var context: Context
-    private var bundle = Bundle()
     private var chatLog = emptyList<Chat>()
     private lateinit var mMNSViewModel: MNSViewModel
+    private var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
+    private var pinImg = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+    private lateinit var currUser: String
+    private lateinit var nickname: String
+    private lateinit var post: Post
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
@@ -59,15 +65,18 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is HeaderViewHolder -> {
-                val uri = bundle.getString("uri")
-                holder.itemView.post_read_user.text = bundle.getString("userid")
-                holder.itemView.post_read_title.text = bundle.getString("title")
+                val uri = post.photoUri
+                holder.itemView.post_read_user.text = nickname
+                holder.itemView.post_read_title.text = post.title
                 if(uri != "") {
                     Glide.with(context).load(uri).into(holder.itemView.post_read_photo)
                 } else {
                     holder.itemView.post_read_photo.visibility = GONE
                 }
-                holder.itemView.post_read_text.text = bundle.getString("text")
+                holder.itemView.post_read_text.text = post.text
+                val pinType = post.pinType
+                holder.itemView.tV_post_read_pin.text = pinArray[pinType]
+                holder.itemView.iV_post_read_pin.setImageResource(pinImg[pinType])
             }
 
             is FooterViewHolder -> {
@@ -76,8 +85,8 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 sendBtn.setOnClickListener{
                     if(editText.text.toString().trim() != "") {
-                        val postId = bundle.getInt("key")
-                        val userId = bundle.getString("currUser")
+                        val postId = post.key
+                        val userId = currUser
                         val date = Date()
                         val temp = Chat(postId, date, userId!!, editText.text.toString().trim())
                         mMNSViewModel.addChat(temp)
@@ -96,7 +105,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.itemView.comment_date.text = form.format(currentItem.date)
                 val deleteBtn = holder.itemView.btn_delete
 
-                if(currentItem.userId == bundle.getString("currUser")) {
+                if(currentItem.userId == currUser) {
                     deleteBtn.visibility = VISIBLE
                 } else {
                     deleteBtn.visibility = GONE
@@ -113,9 +122,14 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    fun setData(chatLog: ArrayList<Chat>, bundle: Bundle) {
+    fun setData(chatLog: ArrayList<Chat>) {
         this.chatLog = chatLog
-        this.bundle = bundle
+    }
+
+    fun setFixedData(post: Post, currUser: String, nickname: String) {
+        this.post = post
+        this.currUser = currUser
+        this.nickname = nickname
     }
 
     fun deleteChatAlertDialog(currentItem: Chat): AlertDialog {

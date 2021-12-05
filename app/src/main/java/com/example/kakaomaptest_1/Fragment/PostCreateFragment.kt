@@ -51,7 +51,7 @@ class PostCreateFragment : Fragment() {
         var pinbtn = rootView.findViewById<ImageButton>(R.id.pin)
         var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
         var pinColor = rootView.resources.getIntArray(R.array.pinColors)
-        var markerType = 0
+        var pinType = 0
         imgBtn_createPost = requireActivity().findViewById(R.id.imgBtn_createPost)
 
         imgBtn_createPost.setOnClickListener{
@@ -64,7 +64,7 @@ class PostCreateFragment : Fragment() {
                     Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                val post = makePost(markerType)
+                val post = makePost(pinType)
                 insertPost(post)
                 findNavController().navigate(R.id.action_postCreateFragment_to_mapFragment)
             }
@@ -75,7 +75,7 @@ class PostCreateFragment : Fragment() {
             dlg.setTitle("핀 카테고리 선택")
             dlg.setItems(pinArray){dialog, which->
                 pinbtn.setColorFilter(pinColor[which])
-                markerType = which
+                pinType = which
             }
             dlg.setIcon(R.drawable.ic_pin)
             dlg.show()

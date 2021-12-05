@@ -15,16 +15,21 @@ import android.provider.Settings
 import android.util.Base64
 import android.util.Log
 import android.view.MenuItem
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.Fragment.DrawerLocker
-import com.example.kakaomaptest_1.Fragment.SetProfileFragment
 import com.example.kakaomaptest_1.R
+import com.example.kakaomaptest_1.model.User
+import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import com.google.android.material.navigation.NavigationView
 import java.security.MessageDigest
 import kotlin.system.exitProcess
@@ -42,7 +47,7 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigat
     private lateinit var toggle : ActionBarDrawerToggle
     private lateinit var toolbar: Toolbar
     private lateinit var currentUserID: String
-    private lateinit var currentUserNickname: String
+    private lateinit var btnBack : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +55,17 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigat
 //        getAppKeyHash()
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-//        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
         nav = findViewById(R.id.navmenu)
         nav.setNavigationItemSelectedListener(this)
         drawerLayout = findViewById(R.id.drawer)
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+        btnBack = findViewById(R.id.imgBtn_back)
+        btnBack.visibility = GONE
 
         permissionCheck()
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -76,15 +82,15 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigat
         return this.currentUserID
     }
 
-    fun setUserNickname(nickname: String) {
-        this.currentUserNickname = nickname
+    fun setUserProfile(user: User) {
         val headerView = nav.getHeaderView(0)
+        val uri = Uri.parse(user.photoUri)
         val textView = headerView.findViewById<TextView>(R.id.nav_header_user)
-        textView.text = nickname
-    }
-
-    fun getUserNickname(): String {
-        return this.currentUserNickname
+        val imgView = headerView.findViewById<ImageView>(R.id.nav_header_imgView)
+        textView.text = user.nickname
+        if(user.photoUri != "") {
+            Glide.with(this).load(uri).circleCrop().into(imgView)
+        }
     }
 
     private fun getDeniedPermissions():ArrayList<String>{
@@ -195,17 +201,21 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigat
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
+        val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val btnCreatePost = findViewById<ImageButton>(R.id.imgBtn_createPost)
 
         when(id) {
             R.id.menu_profile -> {
-                val fragment = SetProfileFragment()
-                val ft = supportFragmentManager.beginTransaction()
-                ft.replace(R.id.nav_host_fragment, fragment)
-                ft.commit()
+                fragment!!.findNavController().navigate(R.id.action_mapFragment_to_setProfileFragment)
+                setDrawerEnabled(false)
+                btnCreatePost.visibility = GONE
+                btnBack.visibility = VISIBLE
             }
 
             R.id.menu_pin -> {
-
+                fragment!!.findNavController().navigate(R.id.action_mapFragment_to_viewPinFragment)
+                setDrawerEnabled(false)
+                btnCreatePost.visibility = GONE
             }
 
             R.id.menu_scrap -> {

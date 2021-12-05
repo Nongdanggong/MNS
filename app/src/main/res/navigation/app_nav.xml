@@ -47,6 +47,12 @@
         <action
             android:id="@+id/action_mapFragment_to_postReadFragment"
             app:destination="@id/postReadFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_setProfileFragment"
+            app:destination="@id/setProfileFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_viewPinFragment"
+            app:destination="@id/viewPinFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
@@ -93,6 +99,14 @@
         android:label="SetProfileFragment" >
         <action
             android:id="@+id/action_setProfileFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPinFragment"
+        android:name="com.example.kakaomaptest_1.Fragment.ViewPinFragment"
+        android:label="ViewPinFragment" >
+        <action
+            android:id="@+id/action_viewPinFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
 </navigation>

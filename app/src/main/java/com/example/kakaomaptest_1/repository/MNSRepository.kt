@@ -50,4 +50,16 @@ class MNSRepository(private val MNSDao: MNSDao) {
     fun getUser(id: String) : User {
         return MNSDao.getUser(id)
     }
+
+    fun getPost(key: Int) : Post {
+        return MNSDao.getPost(key)
+    }
+
+    fun editUser(id: String, nickname: String, photoUri: String) {
+        return MNSDao.editUser(id, nickname, photoUri)
+    }
+
+    fun isThisNickExists(nickname: String): Boolean {
+        return MNSDao.isThisNickExists(nickname)
+    }
 }

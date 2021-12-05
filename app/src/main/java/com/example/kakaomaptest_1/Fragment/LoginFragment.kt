@@ -68,7 +68,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 //아이디와 비밀번호가 일치한다면 fragment_map.xml(홈 화면)으로 전환
                 if (checkValid()) {
                     (activity as MainActivity)!!.setUserId(id)
-                    (activity as MainActivity)!!.setUserNickname(userNickname)
+                    val user = mMNSViewModel.getUser(id)
+                    (activity as MainActivity).setUserProfile(user)
                     Toast.makeText(context, "로그인되었습니다", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_mapFragment)
                 }
@@ -85,7 +86,15 @@ class LoginFragment : Fragment(), View.OnClickListener {
         val edtId = edtTxtId.text.toString().trim()
         val edtPasswd = edtTxtPasswd.text.toString().trim()
 
-        // 데이터 베이스에 쿼리를 날려 유저 확
+        if(edtId == "") {
+            Toast.makeText(activity, "아이디를 입력하세요", Toast.LENGTH_SHORT).show()
+            return false
+        } else if(edtPasswd == "") {
+            Toast.makeText(activity, "비밀번를 입력하세요", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        // 데이터 베이스에 쿼리를 날려 유저 확인
         var user = mMNSViewModel.getUser(edtId)
 
         if (user != null) {
@@ -97,6 +106,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 false
             }
         }
+
         Toast.makeText(activity, "존재하지 않는 아이디입니다.", Toast.LENGTH_SHORT).show()
 
         return false

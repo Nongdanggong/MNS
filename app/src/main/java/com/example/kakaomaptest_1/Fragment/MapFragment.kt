@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
@@ -16,7 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.kakaomaptest_1.Activity.MainActivity
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
@@ -64,7 +64,8 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         currentLoc = Bundle()
 
         // 아이콘 이미지 변경
-        imgBtnCreatePost = requireActivity().findViewById<ImageButton>(R.id.imgBtn_createPost)
+        imgBtnCreatePost = requireActivity().findViewById(R.id.imgBtn_createPost)
+        imgBtnCreatePost.visibility = VISIBLE
         imgBtnCreatePost.setImageResource(R.drawable.location_w)
 
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
@@ -142,7 +143,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             var distance = getDistance(lati,long,i.lati,i.longi)
             if(distance < 500){
                 title = i.title
-                markerType = i.markerType
+                markerType = i.pinType
                 postId = i.key
                 Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
             }else{
@@ -171,7 +172,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             title = i.title
             lati = i.lati
             long = i.longi
-            markerType = i.markerType
+            markerType = i.pinType
             postId = i.key
             val tempPoint = MapPoint.mapPointWithGeoCoord(lati, long)
             val tempItem = MapPOIItem()
@@ -253,18 +254,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         for(i in postList) {
             if(i.key == temp) {
                 var bundle = Bundle()
-                bundle = bundleOf(
-                    "key" to i.key,
-                    "userid" to i.userCreatorId,
-                    "title" to i.title,
-                    "markerType" to i.markerType,
-                    "lati" to i.lati,
-                    "longi" to i.longi,
-                    "uri" to i.photoUri,
-                    "text" to i.text,
-                    "date" to form.format(i.date)
-                )
-
+                bundle.putInt("key", i.key)
                 findNavController().navigate(R.id.action_mapFragment_to_postReadFragment, bundle)
             }
         }

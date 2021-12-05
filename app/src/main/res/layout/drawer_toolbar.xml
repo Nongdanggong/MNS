@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#CBFFFA"
-    app:title=" "
+    app:contentInsetStart="0dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageButton
+        android:id="@+id/imgBtn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:src="@drawable/ic_arrow_back"
+        android:backgroundTint="#CBFFFA"
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:layout_width="35dp"

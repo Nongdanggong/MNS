@@ -82,4 +82,18 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     fun getUser(id: String) : User {
         return repository.getUser(id)
     }
+
+    fun getPost(key: Int) : Post {
+        return repository.getPost(key)
+    }
+
+    fun editUser(id: String, nickname: String, photoUri: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.editUser(id, nickname, photoUri)
+        }
+    }
+
+    fun isThisNickExists(nickname: String): Boolean {
+        return repository.isThisNickExists(nickname)
+    }
 }

@@ -45,6 +45,16 @@ interface MNSDao {
 
     @Query("DELETE FROM chat_table WHERE postId = :postid AND date = :date AND userId = :userid")
     fun deleteSingleChat(postid: Int, date: Date, userid: String)
+
+    @Query("UPDATE user_table SET nickname = :nickname, photoUri = :photoUri WHERE id = :id")
+    fun editUser(id: String, nickname: String, photoUri: String)
+
+    @Query("SELECT EXISTS(SELECT * FROM user_table WHERE nickname = :nickname)")
+    fun isThisNickExists(nickname: String): Boolean
+
+    @Query("SELECT * FROM post_table WHERE `key` = :key")
+    fun getPost(key: Int): Post
+
 //    @Query("SELECT * FROM post_table")
 //    fun readAllPostDataDead(): List<Post>
 }

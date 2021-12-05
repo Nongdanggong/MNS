@@ -12,7 +12,7 @@
         android:layout_height="170dp"
         android:scaleType="centerCrop"
         android:src="@drawable/account"
-        android:background="@android:color/transparent"
+        android:background="@drawable/round_edit_userimg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

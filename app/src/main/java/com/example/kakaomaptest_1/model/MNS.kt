@@ -2,10 +2,7 @@ package com.example.kakaomaptest_1.model
 
 import android.os.Parcelable
 import android.provider.ContactsContract
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -14,7 +11,7 @@ import java.util.*
 data class User(
     @PrimaryKey val id: String,
     val password: String,
-    val nickname: String,
+    @ColumnInfo(name = "nickname") val nickname: String,
     val photoUri: String
 ): Parcelable
 
@@ -24,7 +21,7 @@ data class Post(
     @PrimaryKey(autoGenerate = true) val key: Int,
     val userCreatorId: String,
     val title: String,
-    val markerType: Int,
+    val pinType: Int,
     val lati: Double,
     val longi: Double,
     val photoUri: String,
