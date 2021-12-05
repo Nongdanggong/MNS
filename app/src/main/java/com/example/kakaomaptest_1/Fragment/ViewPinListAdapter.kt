@@ -67,7 +67,7 @@ class ViewPinListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
-    fun setPostData(postLog: ArrayList<Post>) {
+    fun setPostData(postLog: List<Post>) {
         this.postLog = postLog
     }
 

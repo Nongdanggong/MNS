@@ -13,9 +13,12 @@
         <entry key="app/src/main/res/drawable/ic_my_location_black.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/drawable/round_comment_img.xml" value="0.15260416666666668" />
+        <entry key="app/src/main/res/drawable/round_edit_button.xml" value="0.15260416666666668" />
         <entry key="app/src/main/res/drawable/round_edit_userimg.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/round_gps_button.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/round_nav_header_userimg.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/drawable/round_post_read_userimg.xml" value="0.15260416666666668" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_post_create.xml" value="0.14895833333333333" />
@@ -24,7 +27,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.12552083333333333" />
         <entry key="app/src/main/res/layout/activity_view_pin.xml" value="0.12552083333333333" />
         <entry key="app/src/main/res/layout/activity_view_scrap.xml" value="0.12552083333333333" />
-        <entry key="app/src/main/res/layout/adapter_chat_row.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/adapter_chat_row.xml" value="0.335" />
         <entry key="app/src/main/res/layout/adapter_pin_row.xml" value="0.25" />
         <entry key="app/src/main/res/layout/chat_row.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/constraintlayout.xml" value="0.335" />

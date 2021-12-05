@@ -11,6 +11,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -36,6 +37,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     private lateinit var currentLoc : Bundle
     private lateinit var mMNSViewModel: MNSViewModel
     private var postList = emptyList<Post>()
+    private lateinit var callback : OnBackPressedCallback
 
     override fun onResume() {
         super.onResume()
@@ -69,7 +71,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         imgBtnCreatePost.setImageResource(R.drawable.location_w)
 
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
-        mMNSViewModel.readAllPostData.observe(viewLifecycleOwner, Observer { post ->
+        mMNSViewModel.readAllPostData.observe(viewLifecycleOwner, { post ->
             this.postList = post
             setMarker()
         })
@@ -125,8 +127,8 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         // 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현
         var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
         var title: String
-        var lati: Double
-        var long: Double
+        val lati: Double
+        val long: Double
         var markerType: Int
         var postId: Int
         
@@ -140,7 +142,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             val tempPoint = MapPoint.mapPointWithGeoCoord(lati, long)
             val tempItem = MapPOIItem()
 
-            var distance = getDistance(lati,long,i.lati,i.longi)
+            val distance = getDistance(lati,long,i.lati,i.longi)
             if(distance < 500){
                 title = i.title
                 markerType = i.pinType
@@ -160,7 +162,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
     // 마커 생성 함수
     private fun setMarker() {
-        var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+        val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
         var title: String
         var lati: Double
         var long: Double
@@ -247,13 +249,11 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
 
     override fun onPOIItemSelected(p0: MapView?, p1: MapPOIItem?) {
-        var temp = p1!!.tag
-
-        var form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val temp = p1!!.tag
 
         for(i in postList) {
             if(i.key == temp) {
-                var bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putInt("key", i.key)
                 findNavController().navigate(R.id.action_mapFragment_to_postReadFragment, bundle)
             }
@@ -276,5 +276,23 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
 
     override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {
         return
+    }
+
+
+    //핸드폰의 뒤로가기 버튼을 눌렀을 때 이전 단계 fragment로 이동하기 위함 이동하면 기능 상실
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_mapFragment_to_loginFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 }

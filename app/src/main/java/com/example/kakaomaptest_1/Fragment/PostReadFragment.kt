@@ -45,7 +45,7 @@ class PostReadFragment: Fragment() {
             adapter.notifyDataSetChanged()
         })
 
-        adapter.setFixedData(post, currUser, user.nickname)
+        adapter.setFixedData(post, currUser, user.nickname, user.photoUri)
 
         // 아이콘 이미지 숨김
         imgBtnCreatePost = requireActivity().findViewById<ImageButton>(R.id.imgBtn_createPost)

@@ -43,9 +43,9 @@ class ViewPinFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
-        val postId = (requireActivity() as MainActivity).getUserId()
-        mMNSViewModel.readAllPostData.observe(viewLifecycleOwner, { logs ->
-          adapter.setPostData(getPostLog(logs, postId!!))
+        val userId = (requireActivity() as MainActivity).getUserId()
+        mMNSViewModel.getUserPosts(userId).observe(viewLifecycleOwner, { logs ->
+          adapter.setPostData(logs)
           adapter.notifyDataSetChanged()
         })
         return rootView

@@ -54,7 +54,7 @@ class SetProfileFragment : Fragment() {
         }
 
         imgBtn.setOnClickListener {
-            var intent = Intent(Intent.ACTION_PICK)
+            val intent = Intent(Intent.ACTION_PICK)
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             intent.type = "image/*"
             startActivityForResult(intent, 0)
@@ -103,6 +103,7 @@ class SetProfileFragment : Fragment() {
             imgBtn.setImageResource(R.drawable.account)
         } else {
             val uri = Uri.parse(temp.photoUri)
+            userImg = temp.photoUri
             Glide.with(this).load(uri).circleCrop().into(imgBtn)
         }
 
@@ -114,7 +115,7 @@ class SetProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            var uri: Uri? = data?.data
+            val uri: Uri? = data?.data
 
             if(uri != null) {
                 userImg = uri.toString()

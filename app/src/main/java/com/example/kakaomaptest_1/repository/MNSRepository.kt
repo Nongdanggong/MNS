@@ -55,6 +55,10 @@ class MNSRepository(private val MNSDao: MNSDao) {
         return MNSDao.getPost(key)
     }
 
+    fun getUserPosts(id: String) : LiveData<List<Post>> {
+        return MNSDao.getUserPosts(id)
+    }
+
     fun editUser(id: String, nickname: String, photoUri: String) {
         return MNSDao.editUser(id, nickname, photoUri)
     }

@@ -43,6 +43,9 @@ interface MNSDao {
     @Query("SELECT * FROM post_table")
     fun readAllPostData(): LiveData<List<Post>>
 
+    @Query("SELECT * FROM post_table WHERE userCreatorId = :id")
+    fun getUserPosts(id: String): LiveData<List<Post>>
+
     @Query("DELETE FROM chat_table WHERE postId = :postid AND date = :date AND userId = :userid")
     fun deleteSingleChat(postid: Int, date: Date, userid: String)
 

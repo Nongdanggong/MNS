@@ -17,7 +17,7 @@ import com.example.kakaomaptest_1.model.User
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import com.google.android.material.textfield.TextInputLayout
 
-class JoinFragment : Fragment(), View.OnClickListener {
+class JoinFragment : Fragment() {
     lateinit var rootView: View
     lateinit var edtId: TextInputLayout
     lateinit var edtPasswd: TextInputLayout
@@ -71,10 +71,12 @@ class JoinFragment : Fragment(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val nicknameInput = s.toString()
+                val nicknameInput = s.toString().trim()
                 if (nicknameInput.length > 7) {
                     edtNickname.error = "닉네임은 7자이내로 작성하세요"
-                } else{
+                } else if(mMNSViewModel.isThisNickExists(nicknameInput)){
+                    edtNickname.error = "닉네임이 이미 존재합니다"
+                } else {
                     edtNickname.error = null
                 }
             }
@@ -124,8 +126,14 @@ class JoinFragment : Fragment(), View.OnClickListener {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // ?? 근데 왜 버튼에 바로 ClickListener 안 달고 이렇게 달지?
-        btnJoin.setOnClickListener(this)
+        // ?? 근데 왜 버튼에 바로 ClickListener 안 달고 이렇게 달지? <- 바꿔드렸습니다 ㅋㅋ
+        btnJoin.setOnClickListener {
+            if (isJoinEnabled()) {
+                addUser()
+                Toast.makeText(context, "회원가입이 완료되었습니다", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+            }
+        }
         return rootView
     }
 
@@ -161,7 +169,7 @@ class JoinFragment : Fragment(), View.OnClickListener {
         // 사용자가 입력한 아이디가 존재하는지 체크
         // ?? 쿼리문으로 사용자 존재하는지 체크할 수 는 없나?
         for (i in userList) {
-            if (edtId.editText!!.text.toString() == i.id.toString()) {
+            if (edtId.editText!!.text.toString() == i.id) {
                 Toast.makeText(context, "이미 존재하는 아이디 입니다", Toast.LENGTH_SHORT).show()
                 return false
             }
@@ -180,14 +188,5 @@ class JoinFragment : Fragment(), View.OnClickListener {
 
         val user = User(userId, userPasswd, nickname, "")
         mMNSViewModel.addUser(user)
-    }
-
-    // 이 View에서 onClick 이벤트 발생시
-    override fun onClick(v: View?) {
-        if (isJoinEnabled()) {
-            addUser()
-            Toast.makeText(context, "회원가입이 완료되었습니다", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
-        }
     }
 }

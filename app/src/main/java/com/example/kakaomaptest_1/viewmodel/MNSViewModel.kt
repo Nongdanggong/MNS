@@ -19,7 +19,6 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     val readAllUserData: LiveData<List<User>>
     val readAllPostData: LiveData<List<Post>>
     val readAllChatData: LiveData<List<Chat>>
-//    val readAllPostDataDead: List<Post>
 
     val repository: MNSRepository
 
@@ -31,7 +30,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         readAllUserData = repository.readAllUserData
         readAllPostData = repository.readAllPostData
         readAllChatData = repository.readAllChatData
-//        readAllPostDataDead = repository.readAllPostDataDead
+
     }
 
 
@@ -72,7 +71,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun isThisIdExists(id: String) : LiveData<Boolean> {
-        var bool = MutableLiveData<Boolean>()
+        val bool = MutableLiveData<Boolean>()
         viewModelScope.launch(Dispatchers.IO) {
             bool.postValue(repository.isThisIdExists(id))
         }
@@ -85,6 +84,10 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
 
     fun getPost(key: Int) : Post {
         return repository.getPost(key)
+    }
+
+    fun getUserPosts(id: String) : LiveData<List<Post>> {
+        return repository.getUserPosts(id)
     }
 
     fun editUser(id: String, nickname: String, photoUri: String) {

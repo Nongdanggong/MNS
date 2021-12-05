@@ -9,17 +9,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
         <!-- 프로필 이미지 -->
         <ImageView
             android:id="@+id/post_read_userImg"
             android:src="@drawable/account"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:background="@drawable/round_post_read_userimg"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <!-- 프로필 닉네임 -->
         <TextView
             android:id="@+id/post_read_user"
@@ -27,7 +29,7 @@
             android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:gravity="center_vertical"
             app:layout_constraintLeft_toRightOf="@+id/post_read_userImg" />
 
@@ -65,7 +67,7 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:gravity="center_vertical" />
     <!-- 본문 이미지 -->
