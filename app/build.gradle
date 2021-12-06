@@ -92,4 +92,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     //glide : to image auto fit
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }

@@ -5,7 +5,8 @@
     android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#EDEDED">
+    android:background="#EDEDED"
+    android:layout_gravity="bottom">
 
     <ImageView
         android:id="@+id/bottom_comment_img"

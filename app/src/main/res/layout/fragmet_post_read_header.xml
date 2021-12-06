@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
 
 
 
@@ -64,6 +65,7 @@
     <TextView
         android:id="@+id/post_read_title"
         android:text="날씨가 좋다~"
+        android:fontFamily="@font/welcome_font_regular"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
