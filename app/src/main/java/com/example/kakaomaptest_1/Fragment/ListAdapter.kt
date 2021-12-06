@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
@@ -207,7 +206,6 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             .setNegativeButton("네"){ dialog, which ->
                 mMNSViewModel.deleteSinglePost(creatorid, title)
-                //findNavController().navigate(R.id.action_postReadFragment_to_mapFragment)
             }
             .create()
 
