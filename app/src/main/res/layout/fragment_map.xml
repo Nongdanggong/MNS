@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/welcome_font_bold"
                 android:layout_margin="15dp"
-                android:text="핀"
+                android:text="핀 목록"
                 android:textSize="15sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

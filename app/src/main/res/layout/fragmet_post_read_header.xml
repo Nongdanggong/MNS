@@ -127,6 +127,20 @@
             app:layout_constraintLeft_toRightOf="@id/imgbtn_heart"
             app:layout_constraintBottom_toBottomOf="parent"
             ></ImageButton>
+
+        <!-- 글 삭제 버튼 -->
+        <ImageButton
+            android:id="@+id/imgbtn_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eraser"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ></ImageButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 본문 내용 -->

@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
@@ -42,6 +43,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var img_pin : ImageView
     private lateinit var text_like : TextView
     private lateinit var text_scrap : TextView
+    private lateinit var img_delete : ImageButton
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
@@ -68,6 +70,8 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(holder) {
             is HeaderViewHolder -> {
                 val uri = bundle.getString("uri")
+                val creatorid = bundle.getString("userid")!!
+                val title = bundle.getString("title")!!
                 holder.itemView.post_read_user.text = bundle.getString("userid")
                 holder.itemView.post_read_title.text = bundle.getString("title")
                 imgbtn_heart = holder.itemView.imgbtn_heart
@@ -75,6 +79,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 text_like = holder.itemView.text_like
                 text_scrap = holder.itemView.text_scrap
                 img_pin = holder.itemView.img_pin
+                img_delete = holder.itemView.imgbtn_delete
 
                 if(uri != "") {
                     Glide.with(context).load(uri).into(holder.itemView.post_read_photo)
@@ -111,6 +116,17 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         text_scrap.text = (Integer.parseInt(text_scrap.text.toString()) - 1).toString()
                         true
                     }
+                }
+
+                if(creatorid == bundle.getString("currUser")) {
+                    img_delete.visibility = VISIBLE
+                } else {
+                    img_delete.visibility = GONE
+                }
+
+                img_delete.setOnClickListener{
+                    val aD = deletePostAlertDialog(creatorid, title)
+                    aD.show()
                 }
 
             }
@@ -162,18 +178,36 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.bundle = bundle
     }
 
+    // 댓글 삭제 fun
     fun deleteChatAlertDialog(currentItem: Chat): AlertDialog {
         val postid = currentItem.postId
         val userid = currentItem.userId
         val date = currentItem.date
 
         val builder = AlertDialog.Builder(context)
-            .setTitle("채팅 삭제")
+            .setTitle("댓글 삭제")
             .setMessage("삭제하시겠습니까?")
             .setPositiveButton("아니오"){ dialog, which ->
             }
             .setNegativeButton("네"){ dialog, which ->
                 mMNSViewModel.deleteSingleChat(postid, date, userid)
+            }
+            .create()
+
+        return builder
+    }
+
+    // 핀 삭제 fun
+    fun deletePostAlertDialog(creatorid : String, title : String): AlertDialog {
+
+        val builder = AlertDialog.Builder(context)
+            .setTitle("글 삭제")
+            .setMessage("삭제하시겠습니까?")
+            .setPositiveButton("아니오"){ dialog, which ->
+            }
+            .setNegativeButton("네"){ dialog, which ->
+                mMNSViewModel.deleteSinglePost(creatorid, title)
+                //findNavController().navigate(R.id.action_postReadFragment_to_mapFragment)
             }
             .create()
 
