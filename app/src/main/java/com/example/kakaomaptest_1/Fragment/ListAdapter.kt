@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
@@ -124,7 +125,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
 
                 img_delete.setOnClickListener{
-                    val aD = deletePostAlertDialog(creatorid, title)
+                    val aD = deletePostAlertDialog(creatorid, title, holder)
                     aD.show()
                 }
 
@@ -197,8 +198,9 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     // 핀 삭제 fun
-    fun deletePostAlertDialog(creatorid : String, title : String): AlertDialog {
+    fun deletePostAlertDialog(creatorid : String, title : String, holder: RecyclerView.ViewHolder): AlertDialog {
 
+        val action = PostReadFragmentDirections.actionPostReadFragmentToMapFragment()
         val builder = AlertDialog.Builder(context)
             .setTitle("글 삭제")
             .setMessage("삭제하시겠습니까?")
@@ -206,6 +208,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             .setNegativeButton("네"){ dialog, which ->
                 mMNSViewModel.deleteSinglePost(creatorid, title)
+                holder.itemView.findNavController().navigate(action)
             }
             .create()
 
