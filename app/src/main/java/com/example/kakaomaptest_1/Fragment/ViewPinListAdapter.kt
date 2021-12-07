@@ -1,6 +1,7 @@
 package com.example.kakaomaptest_1.Fragment
 
 
+import android.app.AlertDialog
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Post
+import com.example.kakaomaptest_1.model.Scrap
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import kotlinx.android.synthetic.main.adapter_pin_row.view.*
 import java.text.SimpleDateFormat
@@ -54,21 +56,31 @@ class ViewPinListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.itemView.pin_post_text.text = currentItem.text
         holder.itemView.tV_pin_post_pin.text = pinArray[currentItem.pinType]
         holder.itemView.iV_pin_post_pin.setImageResource(pinImg[currentItem.pinType])
-
-//        val deleteBtn = holder.itemView.btn_delete
-//
-//        if(currentItem.userCreatorId == bundle.getString("currUser")) {
-//            deleteBtn.visibility = VISIBLE
-//        } else {
-//            deleteBtn.visibility = GONE
-//        }
-//        deleteBtn.setOnClickListener{
-//        }
+        holder.itemView.imgBtn_pin_delete.setOnClickListener {
+            val aD = deletePostAlertDialog(currentItem)
+            aD.show()
+        }
 
     }
 
     fun setPostData(postLog: List<Post>) {
         this.postLog = postLog
+    }
+
+    fun deletePostAlertDialog(currentItem: Post): AlertDialog {
+        val postid = currentItem.key
+
+        val builder = AlertDialog.Builder(context)
+            .setTitle("핀 삭제")
+            .setMessage("삭제하시겠습니까?")
+            .setPositiveButton("아니오"){ dialog, which ->
+            }
+            .setNegativeButton("네"){ dialog, which ->
+                mMNSViewModel.deleteSinglePost(postid)
+            }
+            .create()
+
+        return builder
     }
 
 }

@@ -50,7 +50,7 @@ class SetProfileFragment : Fragment() {
         //Toolbar에 뒤로가기 버튼을 생성후 리스너로 이전 Fragment로 돌아가게 한다
         btnBack.setOnClickListener {
             btnBack.visibility = GONE
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_setProfileFragment_to_mapFragment)
         }
 
         imgBtn.setOnClickListener {
@@ -130,7 +130,7 @@ class SetProfileFragment : Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 btnBack.visibility = GONE
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_setProfileFragment_to_mapFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)

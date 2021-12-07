@@ -14,7 +14,7 @@
         <!-- 프로필 이미지 -->
         <ImageView
             android:id="@+id/pin_post_userImg"
-            android:src="@drawable/account"
+            android:src="@drawable/account_1"
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -80,6 +80,18 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#EDEDED" />
+
+    <!-- 글 삭제 버튼 -->
+    <ImageButton
+        android:id="@+id/imgBtn_pin_delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/eraser"
+        android:layout_gravity="end"
+        ></ImageButton>
 
     <!-- 본문 내용 -->
     <TextView
