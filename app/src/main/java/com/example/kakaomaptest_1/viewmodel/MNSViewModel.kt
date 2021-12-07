@@ -6,12 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kakaomaptest_1.data.MNSDatabase
-import com.example.kakaomaptest_1.model.Chat
-import com.example.kakaomaptest_1.model.Post
-import com.example.kakaomaptest_1.model.User
+import com.example.kakaomaptest_1.model.*
 import com.example.kakaomaptest_1.repository.MNSRepository
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class MNSViewModel(application: Application): AndroidViewModel(application) {
@@ -19,6 +16,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     val readAllUserData: LiveData<List<User>>
     val readAllPostData: LiveData<List<Post>>
     val readAllChatData: LiveData<List<Chat>>
+    val readAllScrapData: LiveData<List<Scrap>>
 
     val repository: MNSRepository
 
@@ -30,6 +28,7 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         readAllUserData = repository.readAllUserData
         readAllPostData = repository.readAllPostData
         readAllChatData = repository.readAllChatData
+        readAllScrapData = repository.readAllScrapData
 
     }
 
@@ -37,6 +36,12 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
     fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)
+        }
+    }
+
+    fun addScrap(scrap: Scrap) {
+        viewModelScope.launch(Dispatchers.IO){
+            repository.addScrap(scrap)
         }
     }
 
@@ -70,6 +75,30 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun deleteSinglePost(postid: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSinglePost(postid)
+        }
+    }
+
+    fun deleteSingleScrap(userId: String, postId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSingleScrap(userId, postId)
+        }
+    }
+
+    fun deletePostChatLog(postid: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deletePostChatLog(postid)
+        }
+    }
+
+    fun deleteConnectedScrap(postId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteConnectedScrap(postId)
+        }
+    }
+
     fun isThisIdExists(id: String) : LiveData<Boolean> {
         val bool = MutableLiveData<Boolean>()
         viewModelScope.launch(Dispatchers.IO) {
@@ -90,6 +119,14 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         return repository.getUserPosts(id)
     }
 
+    fun getScraps(id: String) : LiveData<List<Scrap>> {
+        return repository.getScraps(id)
+    }
+
+    fun getPostWithUser(key: Int) : PostWithUser {
+        return repository.getPostWithUser(key)
+    }
+
     fun editUser(id: String, nickname: String, photoUri: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.editUser(id, nickname, photoUri)
@@ -98,5 +135,9 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
 
     fun isThisNickExists(nickname: String): Boolean {
         return repository.isThisNickExists(nickname)
+    }
+
+    fun isPostScrapped(id: String, postId: Int): Boolean {
+        return repository.isPostScrapped(id, postId)
     }
 }

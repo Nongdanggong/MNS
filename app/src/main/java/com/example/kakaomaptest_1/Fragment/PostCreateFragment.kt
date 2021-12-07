@@ -41,16 +41,15 @@ class PostCreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         rootView = inflater.inflate(R.layout.fragment_post_create, container, false)
-        (requireActivity() as MainActivity).setDrawerEnabled(false)
         currentImgUri = ""
         imgBtn_photoAdd = rootView.findViewById<ImageButton>(R.id.addPhoto)
         imgBtn_photoDelete = rootView.findViewById<ImageButton>(R.id.deletePhoto)
         eText_post = rootView.findViewById(R.id.eText_post)
         userPhoto = rootView.findViewById(R.id.userPhoto)
         eText_post_title = rootView.findViewById(R.id.eText_post_title)
-        var pinbtn = rootView.findViewById<ImageButton>(R.id.pin)
-        var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
-        var pinColor = rootView.resources.getIntArray(R.array.pinColors)
+        val pinbtn = rootView.findViewById<ImageButton>(R.id.pin)
+        val pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
+        val pinColor = rootView.resources.getIntArray(R.array.pinColors)
         var pinType = 0
         imgBtn_createPost = requireActivity().findViewById(R.id.imgBtn_createPost)
 
@@ -71,7 +70,7 @@ class PostCreateFragment : Fragment() {
         }
 
         pinbtn.setOnClickListener {
-            var dlg = AlertDialog.Builder(context)
+            val dlg = AlertDialog.Builder(context)
             dlg.setTitle("핀 카테고리 선택")
             dlg.setItems(pinArray){dialog, which->
                 pinbtn.setColorFilter(pinColor[which])
@@ -83,7 +82,7 @@ class PostCreateFragment : Fragment() {
 
         // + 버튼 클릭했을 때 갤러리 열어 이미지 파일 들고오기
         imgBtn_photoAdd.setOnClickListener {
-            var intent = Intent(Intent.ACTION_PICK)
+            val intent = Intent(Intent.ACTION_PICK)
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             intent.type = "image/*"
             startActivityForResult(intent, 0)
@@ -103,7 +102,7 @@ class PostCreateFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            var uri: Uri? = data?.data
+            val uri: Uri? = data?.data
 
             if(uri != null) {
                 currentImgUri = uri.toString()
@@ -129,7 +128,7 @@ class PostCreateFragment : Fragment() {
     }
 
     private fun insertPost(post: Post) {
-        var mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
+        val mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
         mMNSViewModel.addPost(post)
     }
 }

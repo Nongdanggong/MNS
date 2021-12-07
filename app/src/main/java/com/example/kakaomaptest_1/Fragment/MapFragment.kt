@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.kakaomaptest_1.Activity.MainActivity
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
@@ -25,6 +26,7 @@ import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.*
 
 class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEventListener {
@@ -38,6 +40,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     private lateinit var mMNSViewModel: MNSViewModel
     private var postList = emptyList<Post>()
     private lateinit var callback : OnBackPressedCallback
+    val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
 
     override fun onResume() {
         super.onResume()
@@ -105,6 +108,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                 } else {
                     imgBtnCreatePost.setImageResource(R.drawable.edit)
                     setMPBundle()
+                    (requireActivity() as MainActivity).setDrawerEnabled(false)
                     findNavController().navigate(R.id.action_mapFragment_to_postCreateFragment, currentLoc)
                 }
             }
@@ -125,7 +129,6 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
     private fun listNearMarker(){
         // 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현
-        var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
         var title: String
         val lati: Double
         val long: Double
@@ -162,15 +165,24 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
     // 마커 생성 함수
     private fun setMarker() {
-        val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
         var title: String
         var lati: Double
         var long: Double
         var markerType: Int
         var postId: Int
 
+        //현재시각
+        val now = Calendar.getInstance()
+
         //Toast.makeText(context, postList.size.toString(), Toast.LENGTH_SHORT).show()
         for(i in postList) {
+
+            val p_date = i.date
+            val calcuDate = (now.time.time - p_date.time) / (60 * 60 * 24 * 1000)
+
+            if(calcuDate >= 1)
+                continue
+
             title = i.title
             lati = i.lati
             long = i.longi
@@ -255,6 +267,9 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             if(i.key == temp) {
                 val bundle = Bundle()
                 bundle.putInt("key", i.key)
+                (requireActivity() as MainActivity).setDrawerEnabled(false)
+                val imgBtn = (requireActivity() as MainActivity).findViewById<ImageButton>(R.id.imgBtn_back)
+                imgBtn.visibility = VISIBLE
                 findNavController().navigate(R.id.action_mapFragment_to_postReadFragment, bundle)
             }
         }

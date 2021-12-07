@@ -200,10 +200,14 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationView.OnNavigat
                 fragment!!.findNavController().navigate(R.id.action_mapFragment_to_viewPinFragment)
                 setDrawerEnabled(false)
                 btnCreatePost.visibility = GONE
+                btnBack.visibility = VISIBLE
             }
 
             R.id.menu_scrap -> {
-
+                fragment!!.findNavController().navigate(R.id.action_mapFragment_to_viewScrapFragment)
+                setDrawerEnabled(false)
+                btnCreatePost.visibility = GONE
+                btnBack.visibility = VISIBLE
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)

@@ -38,3 +38,18 @@ data class Chat(
     val log: String
 ): Parcelable
 
+@Parcelize
+@Entity(tableName = "scrap_table", primaryKeys = ["scraper","key"])
+data class Scrap(
+    val scraper: String,
+    val key: Int
+):Parcelable
+
+data class PostWithUser(
+    @Embedded val post: Post,
+    @Relation(
+        parentColumn = "userCreatorId",
+        entityColumn = "id"
+    )
+    val user: User
+)

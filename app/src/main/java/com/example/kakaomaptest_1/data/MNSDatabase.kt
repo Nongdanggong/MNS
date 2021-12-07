@@ -9,8 +9,9 @@ import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Converters
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import com.example.kakaomaptest_1.model.Scrap
 
-@Database(entities = [User::class, Post::class, Chat::class],
+@Database(entities = [User::class, Post::class, Chat::class, Scrap::class],
     version = 1,
     exportSchema = false)
 @TypeConverters(Converters::class)

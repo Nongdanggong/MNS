@@ -9,13 +9,16 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kakaomaptest_1.R
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
+import com.example.kakaomaptest_1.model.Scrap
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import kotlinx.android.synthetic.main.adapter_chat_row.view.*
 import kotlinx.android.synthetic.main.fragment_post_read_footer.view.*
@@ -32,10 +35,14 @@ class PostReadListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var editText: EditText
     private lateinit var sendBtn: ImageButton
     private lateinit var context: Context
+    private lateinit var imgbtn_scrap : ImageButton
+    private lateinit var imgbtn_delete : ImageButton
+    private lateinit var text_scrap : TextView
     private var chatLog = emptyList<Chat>()
     private lateinit var mMNSViewModel: MNSViewModel
     private var pinArray = arrayOf("실시간 상황", "프로모션", "나만의 관광지", "질문", "사진 핫스팟")
     private var pinImg = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+    private var isScrap = false
     private lateinit var currUser: String
     private lateinit var postNickname: String
     private lateinit var postUserImg: String
@@ -67,6 +74,7 @@ class PostReadListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is HeaderViewHolder -> {
                 holder.itemView.post_read_user.text = postNickname
                 holder.itemView.post_read_title.text = post.title
+
                 //유저 프로필 사진
                 if(postUserImg != "") {
                     val uri = Uri.parse(postUserImg)
@@ -81,10 +89,68 @@ class PostReadListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 } else {
                     holder.itemView.post_read_photo.visibility = GONE
                 }
+                //작성자 이름 밑에 현재 경과시간 보여줌
+                val date_b = post.date
+                val today = Calendar.getInstance()
+                //p_date = form_2.parse(date_b.toString())
+                var calcuDate = (today.time.time - date_b.time) / (60 * 60 * 1000)
+
+                // 1시간 이내
+                if (calcuDate == 0L) {
+                    calcuDate = (today.time.time - date_b.time) / (60 * 1000)
+                    holder.itemView.post_read_date.text = calcuDate.toString() + " minutes ago"
+                }
+                // 1시간
+                else if (calcuDate == 1L) {
+                    holder.itemView.post_read_date.text = calcuDate.toString() + " hour ago"
+                }
+                // 하루 이상
+                else if (calcuDate > 24L) {
+                    calcuDate = (today.time.time - date_b.time) / (60 * 60 * 24 * 1000)
+                    holder.itemView.post_read_date.text = calcuDate.toString() + " days ago"
+                }
+                // 1시간 ~ 하루 사이
+                else {
+                    holder.itemView.post_read_date.text = calcuDate.toString() + " hours ago"
+                }
+
                 holder.itemView.post_read_text.text = post.text
                 val pinType = post.pinType
                 holder.itemView.tV_post_read_pin.text = pinArray[pinType]
                 holder.itemView.iV_post_read_pin.setImageResource(pinImg[pinType])
+
+                imgbtn_scrap = holder.itemView.imgbtn_scrap
+
+                if(post.userCreatorId == currUser) {
+                    imgbtn_scrap.visibility = GONE
+                }
+
+                isScrap = mMNSViewModel.isPostScrapped(currUser, post.key)
+                if(isScrap) {
+                    imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
+                }
+
+                imgbtn_scrap.setOnClickListener {
+                    if(!isScrap) {
+                        isScrap = true
+                        imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
+                    } else {
+                        isScrap = false
+                        imgbtn_scrap.setImageResource(R.drawable.bookmark_b)
+                    }
+                }
+
+                imgbtn_delete = holder.itemView.imgbtn_delete
+                if(post.userCreatorId == currUser) {
+                    imgbtn_delete.visibility = VISIBLE
+                } else {
+                    imgbtn_delete.visibility = GONE
+                }
+
+                imgbtn_delete.setOnClickListener{
+                    val aD = deletePostAlertDialog(post.key, holder)
+                    aD.show()
+                }
             }
 
             is FooterViewHolder -> {
@@ -163,5 +229,27 @@ class PostReadListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             .create()
 
         return builder
+    }
+
+    fun deletePostAlertDialog(postId: Int, holder: RecyclerView.ViewHolder): AlertDialog {
+        val action = PostReadFragmentDirections.actionPostReadFragmentToMapFragment()
+        val builder = AlertDialog.Builder(context)
+            .setTitle("글 삭제")
+            .setMessage("삭제하시겠습니까?")
+            .setPositiveButton("아니오"){ dialog, which ->
+            }
+            .setNegativeButton("네"){ dialog, which ->
+                mMNSViewModel.deleteSinglePost(postId)
+                mMNSViewModel.deletePostChatLog(postId)
+                mMNSViewModel.deleteConnectedScrap(postId)
+                holder.itemView.findNavController().navigate(action)
+            }
+            .create()
+
+        return builder
+    }
+
+    fun getIsScrap(): Boolean {
+        return this.isScrap
     }
 }

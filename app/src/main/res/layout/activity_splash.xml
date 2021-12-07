@@ -21,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MNS"
-        android:textSize="50dp"
+        android:fontFamily="@font/meriendaone_regular"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/imgView_splash"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="from"
+        android:fontFamily="@font/dancingscript_semibold"
         android:textColor="#808080"
         app:layout_constraintTop_toBottomOf="@+id/txtView_splash"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,6 +48,7 @@
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/txtView2_splash"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/dancingscript_semibold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

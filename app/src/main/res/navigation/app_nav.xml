@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_mapFragment_to_viewPinFragment"
             app:destination="@id/viewPinFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_viewScrapFragment"
+            app:destination="@id/viewScrapFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
@@ -107,6 +110,14 @@
         android:label="ViewPinFragment" >
         <action
             android:id="@+id/action_viewPinFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewScrapFragment"
+        android:name="com.example.kakaomaptest_1.Fragment.ViewScrapFragment"
+        android:label="ViewScrapFragment" >
+        <action
+            android:id="@+id/action_viewScrapFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
 </navigation>

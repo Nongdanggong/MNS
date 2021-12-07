@@ -9,27 +9,21 @@
     tools:context=".Fragment.LoginFragment">
     <!-- test -->
     <!-- 상단 로고 부분 -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/main_logo" />
+
+    <TextView
+        android:id="@+id/login_layout_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/main_logo" />
-
-        <TextView
-            android:id="@+id/login_layout_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="MNS"
-            android:textAlignment="center"
-            android:textSize="30dp" />
-    </LinearLayout>
-
+        android:layout_gravity="center_horizontal"
+        android:text="MNS"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:fontFamily="@font/meriendaone_regular" />
 
     <!-- 로그인 정보 입력 창 -->
     <androidx.cardview.widget.CardView
@@ -52,7 +46,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:hint="ID"
                 android:textSize="18dp" />
 
@@ -63,7 +57,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:hint="PASSWORD"
                 android:inputType="textPassword"
                 android:textSize="18dp" />
