@@ -81,12 +81,16 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 img_pin = holder.itemView.img_pin
                 img_delete = holder.itemView.imgbtn_delete
 
+                var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
+
                 if(uri != "") {
                     Glide.with(context).load(uri).into(holder.itemView.post_read_photo)
                 } else {
                     holder.itemView.post_read_photo.visibility = GONE
                 }
                 holder.itemView.post_read_text.text = bundle.getString("text")
+
+                img_pin.setImageResource(colorArray[bundle.getInt("markerType")])
 
                 // 버튼 클릭시 버튼 이미지 변환 조절
                 var i = true
