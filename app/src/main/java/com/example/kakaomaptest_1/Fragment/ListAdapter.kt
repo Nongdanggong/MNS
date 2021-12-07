@@ -38,9 +38,8 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var imgbtn_heart : ImageButton
     private lateinit var imgbtn_scrap : ImageButton
     private lateinit var img_pin : ImageView
-    private lateinit var text_like : TextView
-    private lateinit var text_scrap : TextView
     private lateinit var img_delete : ImageButton
+    private lateinit var post_hour : TextView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
@@ -74,12 +73,10 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.itemView.post_read_title.text = bundle.getString("title")
                 val creatorid = holder.itemView.post_read_user.text.toString()
                 val title = holder.itemView.post_read_title.text.toString()
-                imgbtn_heart = holder.itemView.imgbtn_heart
                 imgbtn_scrap = holder.itemView.imgbtn_scrap
-                text_like = holder.itemView.text_like
-                text_scrap = holder.itemView.text_scrap
                 img_pin = holder.itemView.img_pin
                 img_delete = holder.itemView.imgbtn_delete
+                post_hour = holder.itemView.post_hour
 
                 var colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
 
@@ -90,34 +87,50 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
                 holder.itemView.post_read_text.text = bundle.getString("text")
 
+                // 알맞은 핀 색상 보여줌
                 img_pin.setImageResource(colorArray[bundle.getInt("markerType")])
 
-                // 버튼 클릭시 버튼 이미지 변환 조절
-                var i = true
+                // 핀 생성된 후 경과시간 보여주기
+                var today = Calendar.getInstance()
+                var p_date : Date
+                var calcuDate : Long
+                val form_2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
 
-                // 좋아요 정보 저장하는 코드 필요
-                imgbtn_heart.setOnClickListener {
-                    i = if(i){
-                        imgbtn_heart.setImageResource(R.drawable.heart_r)
-                        text_like.text = (Integer.parseInt(text_like.text.toString()) + 1).toString()
-                        false
-                    } else {
-                        imgbtn_heart.setImageResource(R.drawable.heart_b)
-                        text_like.text = (Integer.parseInt(text_like.text.toString()) - 1).toString()
-                        true
+                var date_b = bundle.get("date")
+
+                if(date_b != null) {
+                    //Toast.makeText(context, date_b.toString(), Toast.LENGTH_SHORT).show()
+                    p_date = form_2.parse(date_b.toString())
+
+                    calcuDate = (today.time.time - p_date.time) / (60 * 60 * 1000)
+
+                    // 1시간 이내
+                    if (calcuDate == 0L) {
+                        calcuDate = (today.time.time - p_date.time) / (60 * 1000)
+                        post_hour.text = calcuDate.toString() + " minutes ago"
+                    }
+                    // 1시간
+                    else if (calcuDate == 1L) {
+                        post_hour.text = calcuDate.toString() + " hour ago"
+                    }
+                    // 하루 이상
+                    else if (calcuDate > 24L) {
+                        calcuDate = (today.time.time - p_date.time) / (60 * 60 * 24 * 1000)
+                        post_hour.text = calcuDate.toString() + " days ago"
+                    }
+                    // 1시간 ~ 하루 사이
+                    else {
+                        post_hour.text = calcuDate.toString() + " hours ago"
                     }
                 }
-
                 var j = true
                 // 스크랩 정보 저장하는 코드 필요
                 imgbtn_scrap.setOnClickListener {
                     j = if(j){
                         imgbtn_scrap.setImageResource(R.drawable.bookmark_g)
-                        text_scrap.text = (Integer.parseInt(text_scrap.text.toString()) + 1).toString()
                         false
                     } else {
                         imgbtn_scrap.setImageResource(R.drawable.bookmark_b)
-                        text_scrap.text = (Integer.parseInt(text_scrap.text.toString()) - 1).toString()
                         true
                     }
                 }
