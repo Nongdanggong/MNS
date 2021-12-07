@@ -70,10 +70,13 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(holder) {
             is HeaderViewHolder -> {
                 val uri = bundle.getString("uri")
-                val creatorid = bundle.getString("userid")!!
-                val title = bundle.getString("title")!!
+                // 밑 두줄처럼 선언 시 java.lang.NullPointerException 에러 발생
+                //val creatorid = bundle.getString("userid")!!
+                //val title = bundle.getString("title")!!
                 holder.itemView.post_read_user.text = bundle.getString("userid")
                 holder.itemView.post_read_title.text = bundle.getString("title")
+                val creatorid = holder.itemView.post_read_user.text.toString()
+                val title = holder.itemView.post_read_title.text.toString()
                 imgbtn_heart = holder.itemView.imgbtn_heart
                 imgbtn_scrap = holder.itemView.imgbtn_scrap
                 text_like = holder.itemView.text_like
@@ -198,7 +201,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     // 핀 삭제 fun
-    fun deletePostAlertDialog(creatorid : String, title : String, holder: RecyclerView.ViewHolder): AlertDialog {
+    fun deletePostAlertDialog(creatorId : String, title : String, holder: RecyclerView.ViewHolder): AlertDialog {
 
         val action = PostReadFragmentDirections.actionPostReadFragmentToMapFragment()
         val builder = AlertDialog.Builder(context)
@@ -207,7 +210,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             .setPositiveButton("아니오"){ dialog, which ->
             }
             .setNegativeButton("네"){ dialog, which ->
-                mMNSViewModel.deleteSinglePost(creatorid, title)
+                mMNSViewModel.deleteSinglePost(creatorId, title)
                 holder.itemView.findNavController().navigate(action)
             }
             .create()
