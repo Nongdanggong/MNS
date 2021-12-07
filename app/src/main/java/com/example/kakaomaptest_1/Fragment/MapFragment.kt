@@ -23,6 +23,8 @@ import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.*
 import kotlin.math.*
 
 class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEventListener {
@@ -162,8 +164,29 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         var markerType: Int
         var postId: Int
 
+        var postdate : String
+//        val form_1 = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.KOREA)
+        val form_2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
+        var p_date : Date
+        var calcuDate : Long
+
+        // 현재 시각
+        var today = Calendar.getInstance()
+
         //Toast.makeText(context, postList.size.toString(), Toast.LENGTH_SHORT).show()
         for(i in postList) {
+            // i.date 는 Tue Dec 07 20:08:24 GMT +09:00 2021 형식
+            //Toast.makeText(context, i.date.toString(), Toast.LENGTH_SHORT).show()
+
+                //생성된지 24 시간 이상된 핀은 보여주지 않음
+            postdate = form_2.format(i.date)
+            p_date = form_2.parse(postdate)
+
+            calcuDate = (today.time.time - p_date.time) / (60 * 60 * 24 * 1000)
+
+            if(calcuDate >= 1)
+                continue
+
             title = i.title
             lati = i.lati
             long = i.longi

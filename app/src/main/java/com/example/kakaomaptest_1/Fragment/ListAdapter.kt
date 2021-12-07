@@ -8,10 +8,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -154,6 +151,7 @@ class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val currentItem = chatLog[position - 1]
                 val form = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
 
+                //Toast.makeText(context, currentItem.date.toString(), Toast.LENGTH_SHORT).show()
                 holder.itemView.comment_user.text = currentItem.userId
                 holder.itemView.comment_text.text = currentItem.log
                 holder.itemView.comment_date.text = form.format(currentItem.date)
