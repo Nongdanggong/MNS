@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
@@ -51,6 +52,7 @@ class PostReadFragment: Fragment() {
         if(args.postid == -1){
             postId = requireArguments().getInt("key")
         } else {
+            (requireActivity() as MainActivity).setDrawerEnabled(false)
             postId = args.postid
         }
 
@@ -69,6 +71,7 @@ class PostReadFragment: Fragment() {
 
         //상단 툴바의 뒤로가기 화살표를 눌렀을 때 취하는 action
         btnBack = (requireActivity() as MainActivity).findViewById(R.id.imgBtn_back)
+        btnBack.visibility = VISIBLE
         btnBack.setOnClickListener {
             //adapter로부터 scrap마커가 찍혀있는지를 가져와서 true or false 확인 후 scrap 추가/제거
             if(adapter.getIsScrap()) {
