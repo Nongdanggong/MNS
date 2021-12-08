@@ -10,7 +10,7 @@
     tools:context=".Fragment.MapFragment"
     android:orientation="vertical"
     android:gravity="bottom"
-    app:umanoDragView="@id/slide_layout"
+    app:umanoDragView="@id/slide_drag_view"
     app:umanoPanelHeight="50dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +45,13 @@
     <LinearLayout
         android:id="@+id/slide_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slide_drag_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="50dp" >
 
             <ImageView
                 android:layout_width="20dp"
@@ -74,7 +75,29 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 ></TextView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/content_near"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rV_fragment_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/near_places" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

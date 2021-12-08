@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,12 +18,15 @@ import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.viewmodel.MNSViewModel
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.kakaomaptest_1.Activity.MainActivity
+import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.Scrap
 import java.util.*
 
 
 class PostReadFragment: Fragment() {
+    private val args by navArgs<PostReadFragmentArgs>()
     private val adapter = PostReadListAdapter()
     lateinit var rootView: View
     lateinit var recyclerView: RecyclerView
@@ -30,6 +34,7 @@ class PostReadFragment: Fragment() {
     private lateinit var imgBtnCreatePost : ImageButton
     private lateinit var callback: OnBackPressedCallback
     private lateinit var btnBack: ImageButton
+    private lateinit var post: Post
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +46,15 @@ class PostReadFragment: Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
-        val postId = requireArguments().getInt("key")
-        val post = mMNSViewModel.getPost(postId)
+
+        var postId: Int
+        if(args.postid == -1){
+            postId = requireArguments().getInt("key")
+        } else {
+            postId = args.postid
+        }
+
+        post = mMNSViewModel.getPost(postId)
         val currUser = (requireActivity() as MainActivity).getUserId()
         val user = mMNSViewModel.getUser(post.userCreatorId)
         mMNSViewModel.readAllChatData.observe(viewLifecycleOwner, { logs ->

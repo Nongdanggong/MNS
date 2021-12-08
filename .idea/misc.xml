@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/drawer_toolbar.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_join.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.16614583333333333" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_pin_read_header.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/fragment_post_create.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/fragment_post_read.xml" value="0.14895833333333333" />
@@ -46,6 +46,7 @@
         <entry key="app/src/main/res/layout/fragment_view_scrap_adapter.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragmet_post_read_header.xml" value="0.335" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/near_places.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/pin_row.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/post_row.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.246875" />

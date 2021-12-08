@@ -95,6 +95,10 @@
         <action
             android:id="@+id/action_postReadFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <argument
+            android:name="postid"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/setProfileFragment"
