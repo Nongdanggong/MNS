@@ -47,7 +47,7 @@ class PostReadFragment: Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         mMNSViewModel = ViewModelProvider(this).get(MNSViewModel::class.java)
 
-        var postId: Int
+        val postId: Int
         if(args.postid == -1){
             postId = requireArguments().getInt("key")
         } else {
@@ -78,7 +78,7 @@ class PostReadFragment: Fragment() {
                     mMNSViewModel.deleteSingleScrap(currUser, postId)
                 }
             }
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_postReadFragment_to_mapFragment)
             btnBack.visibility = View.GONE
         }
 
@@ -100,7 +100,7 @@ class PostReadFragment: Fragment() {
                     }
                 }
                 btnBack.visibility = View.GONE
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_postReadFragment_to_mapFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)

@@ -37,7 +37,7 @@ class ViewScrapFragment : Fragment() {
         recyclerView = rootView.findViewById<RecyclerView>(R.id.listView_post_read)
         btnBack = (requireActivity() as MainActivity).findViewById(R.id.imgBtn_back)
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_viewScrapFragment_to_mapFragment)
             btnBack.visibility = View.GONE
         }
         val adapter = ViewScrapListAdapter()
@@ -58,7 +58,7 @@ class ViewScrapFragment : Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 btnBack.visibility = View.GONE
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_viewScrapFragment_to_mapFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)

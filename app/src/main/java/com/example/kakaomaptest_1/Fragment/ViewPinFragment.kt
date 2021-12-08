@@ -36,7 +36,7 @@ class ViewPinFragment : Fragment() {
         recyclerView = rootView.findViewById<RecyclerView>(R.id.listView_post_read)
         btnBack = (requireActivity() as MainActivity).findViewById(R.id.imgBtn_back)
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_viewPinFragment_to_mapFragment)
             btnBack.visibility = GONE
         }
         val adapter = ViewPinListAdapter()
@@ -57,7 +57,7 @@ class ViewPinFragment : Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 btnBack.visibility = GONE
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_viewPinFragment_to_mapFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
