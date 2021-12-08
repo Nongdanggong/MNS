@@ -5,7 +5,11 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+
+
     <!-- 프로필 + 닉네임 부분 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,29 +25,51 @@
             android:layout_marginLeft="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <!-- 프로필 닉네임 -->
+        <!-- 프로필 닉네임, 작성시간 -->
         <TextView
             android:id="@+id/post_read_user"
             android:text="익명"
             android:textSize="20dp"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/post_read_userImg" />
+
+        <TextView
+            android:id="@+id/post_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1hour"
+            app:layout_constraintTop_toBottomOf="@id/post_read_user"
+            app:layout_constraintLeft_toLeftOf="@+id/post_read_user"
+            ></TextView>
+
+        <ImageView
+            android:id="@+id/img_pin"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:src="@drawable/pinred"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/black" />
+        android:layout_height="2dp"/>
     <!-- 본문 부분 -->
     <TextView
         android:id="@+id/post_read_title"
         android:text="날씨가 좋다~"
+        android:fontFamily="@font/welcome_font_regular"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
@@ -57,6 +83,39 @@
         android:layout_gravity="center" />
     <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
 
+    <!-- 좋아요, 스크랩 버튼 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imgbtn_scrap"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bookmark_b"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ></ImageButton>
+
+        <!-- 글 삭제 버튼 -->
+        <ImageButton
+            android:id="@+id/imgbtn_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eraser"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ></ImageButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- 본문 내용 -->
     <TextView
         android:id="@+id/post_read_text"
@@ -67,10 +126,8 @@
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/border_box"/>
-    <!-- 좋아요 버튼 : 차후 디자인 수정 -->
-    <Button
-        android:text="좋아요"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"/>
+
 </LinearLayout>

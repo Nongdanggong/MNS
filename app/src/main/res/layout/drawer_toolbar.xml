@@ -4,7 +4,8 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CBFFFA"
+    android:background="@color/white"
+    app:title=" "
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
@@ -18,8 +19,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="right"
-        android:backgroundTint="#CBFFFA"
-        android:scaleType="centerCrop"
-        android:src="@drawable/location_w" />
+        android:backgroundTint="@color/white"
+        android:scaleType="centerCrop" />
 
 </androidx.appcompat.widget.Toolbar>

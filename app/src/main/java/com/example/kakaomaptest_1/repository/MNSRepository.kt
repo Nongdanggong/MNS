@@ -1,10 +1,13 @@
 package com.example.kakaomaptest_1.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.kakaomaptest_1.data.MNSDao
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MNSRepository(private val MNSDao: MNSDao) {
@@ -36,6 +39,10 @@ class MNSRepository(private val MNSDao: MNSDao) {
 
     fun updateChat(chat: Chat) {
         MNSDao.updateChat(chat)
+    }
+
+    fun deleteSinglePost(creatorid: String, title: String) {
+        MNSDao.deleteSinglePost(creatorid, title)
     }
 
     fun deleteSingleChat(postid: Int, date: Date, userid: String) {

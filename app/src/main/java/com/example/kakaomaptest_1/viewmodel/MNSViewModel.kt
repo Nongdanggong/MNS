@@ -76,6 +76,12 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun deleteSinglePost(creatorid: String, title: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSinglePost(creatorid, title)
+        }
+    }
+
     fun deleteSingleChat(postid: Int, date: Date, userid: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteSingleChat(postid, date, userid)
