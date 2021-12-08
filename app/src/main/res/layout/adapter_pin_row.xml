@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pin_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- 프로필 + 닉네임 부분 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <!-- 프로필 이미지 -->
+        <ImageView
+            android:id="@+id/pin_post_userImg"
+            android:src="@drawable/account_1"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- 프로필 닉네임 -->
+        <TextView
+            android:id="@+id/pin_post_title"
+            android:text="제목"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            app:layout_constraintLeft_toRightOf="@+id/pin_post_userImg"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/pin_post_date"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/pin_post_title"
+            app:layout_constraintTop_toBottomOf="@id/pin_post_title" />
+
+        <TextView
+            android:id="@+id/tV_pin_post_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="핀 종류"
+            app:layout_constraintEnd_toStartOf="@id/iV_pin_post_pin"
+            app:layout_constraintTop_toTopOf="@id/iV_pin_post_pin" />
+
+        <ImageView
+            android:id="@+id/iV_pin_post_pin"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="13dp"
+            android:src="@drawable/pin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#EDEDED" />
+    <!-- 본문 이미지 -->
+    <ImageView
+        android:id="@+id/pin_post_photo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center" />
+    <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#EDEDED" />
+
+    <!-- 글 삭제 버튼 -->
+    <ImageButton
+        android:id="@+id/imgBtn_pin_delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/eraser"
+        android:layout_gravity="end"
+        ></ImageButton>
+
+    <!-- 본문 내용 -->
+    <TextView
+        android:id="@+id/pin_post_text"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+</LinearLayout>

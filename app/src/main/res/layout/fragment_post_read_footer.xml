@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/post_read_footer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EDEDED">
+
+    <ImageView
+        android:id="@+id/bottom_comment_img"
+        android:src="@drawable/comment_img"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText
+        android:id="@+id/bottom_comment_edt"
+        android:hint="댓글을 입력하세요"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:maxHeight="100dp"
+        android:padding="10sp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/bottom_comment_img"
+        app:layout_constraintRight_toLeftOf="@+id/bottom_comment_sendBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
+    <!-- maxHeight:100dp로 해서 고정, horizontal_weight1줘서 길이고정 -->
+
+    <ImageButton
+        android:id="@+id/bottom_comment_sendBtn"
+        android:src="@drawable/comment_send"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <!-- scaleType: fitCenter로 해줘야 이미지가 버튼에 안짤리고 들어옴 -->
+    <!-- 이미지버튼시 background 를 투명으로 해줘야 버튼색 사라짐 -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
