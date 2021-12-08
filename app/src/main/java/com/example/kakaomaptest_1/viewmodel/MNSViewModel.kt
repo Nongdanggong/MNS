@@ -3,8 +3,10 @@ package com.example.kakaomaptest_1.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kakaomaptest_1.data.MNSDatabase
+import com.example.kakaomaptest_1.data.SlidingDrawerData
 import com.example.kakaomaptest_1.model.Chat
 import com.example.kakaomaptest_1.model.Post
 import com.example.kakaomaptest_1.model.User
@@ -12,12 +14,14 @@ import com.example.kakaomaptest_1.repository.MNSRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MNSViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllUserData: LiveData<List<User>>
     val readAllPostData: LiveData<List<Post>>
     val readAllChatData: LiveData<List<Chat>>
+    var readAllNearPlaces: MutableLiveData<ArrayList<SlidingDrawerData>>
 //    val readAllPostDataDead: List<Post>
 
     private val repository: MNSRepository
@@ -30,10 +34,18 @@ class MNSViewModel(application: Application): AndroidViewModel(application) {
         readAllUserData = repository.readAllUserData
         readAllPostData = repository.readAllPostData
         readAllChatData = repository.readAllChatData
+        readAllNearPlaces = MutableLiveData<ArrayList<SlidingDrawerData>>().default(arrayListOf(SlidingDrawerData("","","")))
 //        readAllPostDataDead = repository.readAllPostDataDead
     }
 
 
+    fun <T: Any?> MutableLiveData<T>.default(initialValue : T) = apply { setValue(initialValue)}
+    fun addNearPlaces(nearPlaces : SlidingDrawerData){
+        var tempArr = readAllNearPlaces.value
+        tempArr?.add(nearPlaces)
+        readAllNearPlaces
+        // readAllNearPlaces에 값 추가하는 코드
+    }
     fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)

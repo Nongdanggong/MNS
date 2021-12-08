@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
     private val TYPE_FOOTER = 2

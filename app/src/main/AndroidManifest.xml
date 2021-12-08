@@ -20,7 +20,8 @@
             android:value="fd5b0482742bb8fd37f7e0e826704b51" />
 
         <activity
-            android:name=".Activity.MainActivity">
+            android:name=".Activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name=".Activity.SplashActivity"
             android:exported="true"

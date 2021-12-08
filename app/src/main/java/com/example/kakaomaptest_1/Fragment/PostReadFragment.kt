@@ -65,8 +65,6 @@ class PostReadFragment: Fragment() {
                 templist.add(i)
             }
         }
-
         return templist
     }
-
 }

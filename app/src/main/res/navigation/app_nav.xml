@@ -29,7 +29,7 @@
         android:id="@+id/mapFragment"
         android:name="com.example.kakaomaptest_1.Fragment.MapFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" >
+        tools:layout="@layout/activity_home_test" >
         <action
             android:id="@+id/action_mapFragment_to_loginFragment"
             app:destination="@id/loginFragment"
