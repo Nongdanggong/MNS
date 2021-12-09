@@ -48,7 +48,7 @@ class NearPinAdapter :
             val img = Uri.parse(photoUri)
             Glide.with(context).load(img).into(holder.itemView.near_pin_img)
         } else {
-            holder.itemView.near_pin_img.visibility = GONE
+            holder.itemView.near_pin_img.setImageResource(R.drawable.ic_no_photo)
         }
 
         holder.itemView.near_pin_row.setOnClickListener {
