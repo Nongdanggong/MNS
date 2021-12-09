@@ -392,5 +392,5 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             nearListLoop += 0.5f
         }
     }
-
+    
 }

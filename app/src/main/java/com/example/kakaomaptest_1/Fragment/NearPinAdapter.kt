@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,8 @@ class NearPinAdapter :
         if (photoUri != "") {
             val img = Uri.parse(photoUri)
             Glide.with(context).load(img).into(holder.itemView.near_pin_img)
+        } else {
+            holder.itemView.near_pin_img.visibility = GONE
         }
 
         holder.itemView.near_pin_row.setOnClickListener {
