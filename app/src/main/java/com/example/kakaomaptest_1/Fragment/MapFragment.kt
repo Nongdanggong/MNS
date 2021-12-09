@@ -200,7 +200,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                 continue
             val distance = getDistance(lati, long, i.lati, i.longi)
             // 10000m 반경에 있는 post들 추출
-            if (distance < 100) {
+            if (distance < 1000) {
                 newNearPinList.add(i)
                 // 확인하기 위한 Toast. 차후에 제거할 예정
 //                Toast.makeText(
