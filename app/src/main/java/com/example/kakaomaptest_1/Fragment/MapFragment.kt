@@ -46,8 +46,9 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     private lateinit var locationManager: LocationManager
     private lateinit var currentLoc: Location
 
+    private var isCreateUsable = false
     private var currentLocLoop = 3f //3초마다 갱신
-    private var nearListLoop = 20f //30초마다 갱신
+    private var nearListLoop = 20f //20초마다 갱신
     private var postList = emptyList<Post>()
     val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
     var nearPinList = emptyList<Post>()
@@ -122,6 +123,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                         imgBtnMyLoc.tag = 0
                         imgBtnMyLoc.setColorFilter(Color.argb(100, 0, 0, 0))
                         stopTracking()
+                        isCreateUsable = false
                     }
                     else {
                         Toast.makeText(context, "GPS를 사용해주세요", Toast.LENGTH_LONG).show()
@@ -136,10 +138,17 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
                 if(imgBtnMyLoc.tag != 1){
                     Toast.makeText(context, "하단 버튼을 클릭해 현 위치를 불러오세요", Toast.LENGTH_SHORT).show()
                 } else {
-                    imgBtnCreatePost.setImageResource(R.drawable.edit)
-                    val locBundle = setMPBundle(currentLoc)
-                    (requireActivity() as MainActivity).setDrawerEnabled(false)
-                    findNavController().navigate(R.id.action_mapFragment_to_postCreateFragment, locBundle)
+                    if(isCreateUsable) {
+                        imgBtnCreatePost.setImageResource(R.drawable.edit)
+                        val locBundle = setMPBundle(currentLoc)
+                        (requireActivity() as MainActivity).setDrawerEnabled(false)
+                        findNavController().navigate(
+                            R.id.action_mapFragment_to_postCreateFragment,
+                            locBundle
+                        )
+                    } else {
+                        Toast.makeText(context, "GPS정보를 불러오는 중입니다\n 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })
@@ -365,6 +374,10 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     }
 
     override fun onLocationChanged(location: Location) {
+        if(!isCreateUsable) {
+            isCreateUsable = true
+        }
+
         if(currentLocLoop == 3f) {
             currentLoc = location
             currentLocLoop = 0f
