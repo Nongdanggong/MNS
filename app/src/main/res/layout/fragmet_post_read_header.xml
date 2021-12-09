@@ -132,7 +132,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
     <!-- 좋아요 버튼 : 차후 디자인 수정 -->
 
 </LinearLayout>

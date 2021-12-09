@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp">
     <!-- 프로필 + 닉네임 부분 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/iV_scrap_userImg" />
@@ -50,6 +52,7 @@
             android:gravity="center"
             android:textSize="17sp"
             android:text="핀 종류"
+            android:fontFamily="@font/welcome_font_regular"
             app:layout_constraintEnd_toStartOf="@id/iV_scrap_pin"
             app:layout_constraintTop_toTopOf="@id/iV_scrap_pin" />
 
@@ -65,10 +68,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#EDEDED" />
+
     <!-- 본문 부분 -->
     <TextView
         android:id="@+id/tV_scrap_title"
@@ -90,10 +90,7 @@
         android:layout_gravity="center" />
     <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#EDEDED" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -124,7 +121,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
     <!-- 좋아요 버튼 : 차후 디자인 수정 -->
 
 </LinearLayout>
