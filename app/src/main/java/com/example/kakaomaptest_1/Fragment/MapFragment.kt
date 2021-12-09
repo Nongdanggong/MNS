@@ -47,7 +47,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     private lateinit var currentLoc: Location
 
     private var currentLocLoop = 3f //3초마다 갱신
-    private var nearListLoop = 10f //10초마다 갱신
+    private var nearListLoop = 20f //30초마다 갱신
     private var postList = emptyList<Post>()
     val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
     var nearPinList = emptyList<Post>()
@@ -171,21 +171,21 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
 
     // ********** 현재 위치 기준으로 주변 마커 정보 불러오는 코드 구현 **********
     private fun listNearMarker(currentLoc: Location) {
-        var lati: Double
-        var long: Double
-        var newNearPinList = arrayListOf<Post>()
+        val lati: Double
+        val long: Double
+        val newNearPinList = arrayListOf<Post>()
 
         // 현재 위치 정보 받아오는 부분
 
         // currentLoc 없을 때 조건문 생성해야함
-        lati = currentLoc!!.latitude
-        long = currentLoc!!.longitude
+        lati = currentLoc.latitude
+        long = currentLoc.longitude
         // 좌표 잘 잡히는지 확인하기 위한 Toast. 차후에 제거할 예정
 
         // postList에 있는 post 중에서 근처 post만 걸러내는 for문
         for (i in postList) {
 
-            var distance = getDistance(lati, long, i.lati, i.longi)
+            val distance = getDistance(lati, long, i.lati, i.longi)
             // 10000m 반경에 있는 post들 추출
             if (distance < 100) {
                 newNearPinList.add(i)
@@ -240,11 +240,11 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
         }
     }
 
-    // 현재 위치 정보 받아와서 currentLoc에 삽입하는 부분
-    private fun setMPBundle(loc : Location?): Bundle {
-        var bundle = Bundle()
-        bundle.putDouble("lati", loc!!.latitude)
-        bundle.putDouble("long", loc!!.longitude)
+    // 현재 위치 정보 받아와서 bundle 객체 생성하는 부분
+    private fun setMPBundle(loc : Location): Bundle {
+        val bundle = Bundle()
+        bundle.putDouble("lati", loc.latitude)
+        bundle.putDouble("long", loc.longitude)
 
         return bundle
     }
@@ -372,7 +372,7 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
             currentLocLoop += 0.5f
         }
 
-        if(nearListLoop == 10f) {
+        if(nearListLoop == 20f) {
             listNearMarker(location)
             nearListLoop = 0f
         } else {
