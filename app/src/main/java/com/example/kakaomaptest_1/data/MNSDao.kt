@@ -34,7 +34,7 @@ interface MNSDao {
     @Query("SELECT * FROM user_table ORDER BY id ASC")
     fun readAllUserData(): LiveData<List<User>>
 
-    @Query("SELECT * FROM post_table")
+    @Query("SELECT * FROM post_table ORDER BY `key` DESC")
     fun readAllPostData(): LiveData<List<Post>>
 
     @Query("SELECT * FROM scrap_table")
@@ -46,7 +46,7 @@ interface MNSDao {
     @Query("SELECT * FROM user_table WHERE id = :id")
     fun getUser(id: String): User
 
-    @Query("SELECT * FROM post_table WHERE userCreatorId = :id")
+    @Query("SELECT * FROM post_table WHERE userCreatorId = :id ORDER BY `key` DESC")
     fun getUserPosts(id: String): LiveData<List<Post>>
 
     @Query("SELECT * FROM scrap_table WHERE scraper = :id ORDER BY `key` ASC")
