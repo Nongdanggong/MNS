@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="7dp">
     <!-- 프로필 + 닉네임 부분 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
             android:id="@+id/post_read_user"
             android:text="익명"
             android:textSize="20dp"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -51,6 +53,7 @@
             android:gravity="center"
             android:textSize="17sp"
             android:text="핀 종류"
+            android:fontFamily="@font/welcome_font_regular"
             app:layout_constraintEnd_toStartOf="@id/iV_post_read_pin"
             app:layout_constraintTop_toTopOf="@id/iV_post_read_pin" />
 
@@ -66,10 +69,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#EDEDED" />
     <!-- 본문 부분 -->
     <TextView
         android:id="@+id/post_read_title"
@@ -91,10 +90,7 @@
         android:layout_gravity="center" />
     <!-- scaleType을 저렇게 해줘야 이미지가 꽉참 -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#EDEDED" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -105,14 +101,12 @@
             android:id="@+id/imgbtn_scrap"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="10dp"
-            android:padding="5dp"
             android:background="@android:color/transparent"
+            android:padding="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/bookmark_b"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            ></ImageButton>
+            app:layout_constraintLeft_toLeftOf="parent"></ImageButton>
 
         <!-- 글 삭제 버튼 -->
         <ImageButton

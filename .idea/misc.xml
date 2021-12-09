@@ -3,13 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/drawer_toolbar.xml" value="0.2046875" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/fragment_post_read.xml" value="0.36614583333333334" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/fragment_post_read_footer.xml" value="0.36614583333333334" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/fragmet_post_read_header.xml" value="0.36614583333333334" />
-        <entry key="..\:/Univ_Life/mnsfinal/MNS/app/src/main/res/layout/nav_header.xml" value="0.36614583333333334" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragment_join.xml" value="0.3388888888888889" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragment_map.xml" value="0.34629629629629627" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragment_post_create.xml" value="0.36614583333333334" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragment_post_read.xml" value="0.36614583333333334" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragment_post_read_footer.xml" value="0.36614583333333334" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/layout/fragmet_post_read_header.xml" value="0.36614583333333334" />
+        <entry key="..\:/Univ_Life/lecture_resourse/3rd/2nd/MNS/app/src/main/res/mipmap-anydpi-v26/mns_launcher.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/font/font.xml" value="0.6642857142857143" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_home.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_post_create.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_post_read.xml" value="0.22" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_profile.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_setprofile.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_splash.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/activity_view_scrap.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/chat_row.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/drawer_toolbar.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_join.xml" value="0.22" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_login.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_post_create.xml" value="0.13240740740740742" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_post_read.xml" value="0.13240740740740742" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragment_post_read_footer.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/layout/fragmet_post_read_header.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/thsru/AndroidStudioProjects/mns1/app/src/main/res/menu/menu_nav.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
