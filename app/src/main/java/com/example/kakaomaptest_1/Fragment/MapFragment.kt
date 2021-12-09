@@ -193,7 +193,11 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
 
         // postList에 있는 post 중에서 근처 post만 걸러내는 for문
         for (i in postList) {
+            val now = Calendar.getInstance()
+            val calcuDate = (now.time.time - i.date.time) / (60 * 60 * 24 * 1000)
 
+            if(calcuDate >= 1)
+                continue
             val distance = getDistance(lati, long, i.lati, i.longi)
             // 10000m 반경에 있는 post들 추출
             if (distance < 100) {
