@@ -45,9 +45,9 @@ class MapFragment: Fragment(), MapView.MapViewEventListener, MapView.POIItemEven
     private lateinit var recyclerView: RecyclerView
     private lateinit var locationManager: LocationManager
     private lateinit var currentLoc: Location
-
+   
     private var currentLocLoop = 3f //3초마다 갱신
-    private var nearListLoop = 20f //30초마다 갱신
+    private var nearListLoop = 20f //20초마다 갱신
     private var postList = emptyList<Post>()
     val colorArray = arrayOf(R.drawable.pinred, R.drawable.pinblue, R.drawable.pingreen, R.drawable.pin, R.drawable.pinyellow)
     var nearPinList = emptyList<Post>()
